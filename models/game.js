@@ -8,14 +8,13 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     loggedin: {
-      type: DataTypes.boolean
+      type: DataTypes.BOOLEAN
     },
     gamestate: {
-      type: DataTypes.Integer,
+      type: DataTypes.INTEGER,
       default: 0
     },
-
-    description: DataTypes.TEXT,
+    description: DataTypes.TEXT
   });
   return game;
-}
+};

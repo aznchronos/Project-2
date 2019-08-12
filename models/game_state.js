@@ -1,13 +1,14 @@
-module.exports = function (sequelize, DataTypes) {
-    var game_state = sequelize.define("game_state", {
-        inbattle: {
-            type: DataTypes.boolean,
-            default: 0
-        },
-        menu: {
-            type: DataTypes.boolean,
-            default: 0
-        }
-    });
-    return game_state;
-}
+module.exports = function(sequelize, DataTypes) {
+  // eslint-disable-next-line camelcase
+  var gameState = sequelize.define("game_state", {
+    inbattle: {
+      type: DataTypes.BOOLEAN,
+      default: 0
+    },
+    menu: {
+      type: DataTypes.BOOLEAN,
+      default: 0
+    }
+  });
+  return gameState;
+};
