@@ -17,4 +17,7 @@ $(document).ready(function() {
       data: user
     });
   });
+  $("#create").on("click", function() {
+    window.location.href = "/create";
+  });
 });
