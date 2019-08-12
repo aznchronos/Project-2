@@ -1,5 +1,6 @@
 $(document).ready(function() {
   $("#submit").on("click", function() {
+    //creates the body object "user" and sends post request
     var username = $("#user")
       .val()
       .trim();
@@ -17,6 +18,8 @@ $(document).ready(function() {
       data: user
     });
   });
+
+  //redirects to create an account page
   $("#create").on("click", function() {
     window.location.href = "/create";
   });

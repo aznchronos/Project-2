@@ -33,14 +33,7 @@ body{
 
 
 }
-.column{
-  width: 100px;
-  height: 250px;
- 
-  overflow: auto;
-  clear: both
 
-}
 #name{
   margin-top: 40px;
   z-index: 1000;

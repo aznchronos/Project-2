@@ -5,7 +5,6 @@ module.exports = function(app) {
   // eslint-disable-next-line no-unused-vars
   app.post("/auth", function(req, res) {
     var user = req.body.name;
-    
     var pass = req.body.pass;
 
     if (user && pass) {
@@ -25,6 +24,24 @@ module.exports = function(app) {
             console.log("invalid login credentials");
           }
         });
+    }
+  });
+  app.post("/newUser", function(req, res) {
+    var newUser = req.body.name;
+    var newPass = req.body.pass;
+
+    if (newUser && newPass) {
+      db.login
+        .create({
+          username: newUser,
+          password: newPass
+        })
+        .then(function(data) {
+          console.log("data succesfully added to database");
+          console.log(data);
+        });
+    } else {
+      console.log("error in adding to db");
     }
   });
 };
