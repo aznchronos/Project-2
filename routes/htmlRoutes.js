@@ -1,14 +1,16 @@
 var db = require("../models");
 var path = require("path");
 module.exports = function(app) {
-  // Load index page
+  // Load login page
   app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../views/index.html"));
-    // console.log(db.login)
+    res.sendFile(path.join(__dirname, "../views/login.html"));
+  });
+  //load create account page
+  app.get("/create", function(req, res) {
+    res.sendFile(path.join(__dirname, "../views/create.html"));
   });
 
-  // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
-    res.render("404");
+  app.get("/game", function(req, res){
+    res.sendFile(path.join(__dirname, "../views/index.html"));
   });
 };
