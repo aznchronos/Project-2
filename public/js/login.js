@@ -12,11 +12,21 @@ $(document).ready(function() {
       name: username,
       pass: password
     };
+    $("#user").val("");
+    $("#pass").val("");
     $.ajax({
       method: "POST",
       url: "/auth",
       data: user
     });
+  });
+  $("form input").keypress(function(e) {
+    if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+      $("button[type=submit] .default").click();
+      return false;
+    } else {
+      return true;
+    }
   });
 
   //redirects to create an account page

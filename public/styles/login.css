@@ -25,9 +25,20 @@ body{
 #torch-right{
   float:right;
 
-  
+
   
 }
+
+input:focus{
+  outline: none;
+}
+
+button:focus{
+  outline: none;
+}
+button:hover{
+  background-color: grey;
+} 
 #torch-left{
   float: left;
 
