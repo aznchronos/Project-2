@@ -1,5 +1,4 @@
 var db = require("../models");
-var path = require("path");
 module.exports = function(app) {
   // handle users login
   // eslint-disable-next-line no-unused-vars
@@ -20,14 +19,13 @@ module.exports = function(app) {
           if (data !== null) {
             console.log("logged in succesfully");
             res.json(data.dataValues);
-
           } else {
             console.log("invalid login credentials");
           }
         });
     }
   });
-  app.post("/newUser", function(req, res) {
+  app.post("/newUser", function(req) {
     var newUser = req.body.name;
     var newPass = req.body.pass;
 
