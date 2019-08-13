@@ -7,7 +7,7 @@ $(document).ready(function() {
     var password = $("#pass")
       .val()
       .trim();
-
+    //creating the user object to send in post
     var user = {
       name: username,
       pass: password
@@ -18,17 +18,15 @@ $(document).ready(function() {
       method: "POST",
       url: "/auth",
       data: user
+    }).then(function(data) {
+      console.log(data);
+      if (data !== null) {
+        window.location.href = "/create";
+      } else {
+        console.log("invalid login credentials");
+      }
     });
   });
-  $("form input").keypress(function(e) {
-    if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
-      $("button[type=submit] .default").click();
-      return false;
-    } else {
-      return true;
-    }
-  });
-
   //redirects to create an account page
   $("#create").on("click", function() {
     window.location.href = "/create";

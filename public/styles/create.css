@@ -23,18 +23,12 @@
     height: 150px;
   }
   #torch-right{
-    float:right;
-  
-    
-    
+    float:right;    
   }
   #torch-left{
     float: left;
-  
-  
   }
-  
-  
+
   #name{
     margin-top: 40px;
     z-index: 1000;

@@ -16,10 +16,11 @@ module.exports = function(app) {
           }
         })
         .then(function(data) {
-          console.log(data);
+          console.log(data.dataValues);
           if (data !== null) {
             console.log("logged in succesfully");
-            res.redirect("/loggedin");
+            res.json(data.dataValues);
+
           } else {
             console.log("invalid login credentials");
           }

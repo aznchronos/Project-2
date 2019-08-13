@@ -2,6 +2,7 @@ $(document).ready(function() {
   console.log("jquery loaded");
 
   $("#newUserButton").on("click", function() {
+    //grabs new user and pass creatiion to make a post object
     var newUsername = $("#newUsername")
       .val()
       .trim();
@@ -13,7 +14,7 @@ $(document).ready(function() {
       name: newUsername,
       pass: newPass
     };
-
+    //conditionals to check if user and pass have required lengths
     if (
       newUsername.length >= 5 &&
       newUsername.length <= 20 &&
@@ -25,5 +26,7 @@ $(document).ready(function() {
         data: newUser
       });
     }
+
+    window.location.href = "/";
   });
 });
