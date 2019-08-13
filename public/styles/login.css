@@ -1,13 +1,20 @@
+
 @font-face {
-  font-family: "custom-font";
-  src : url("/magnav.ttf") format("truetype");
+    font-family: 'ancient_modern_talesregular';
+    src: url('../fonts/ancient_modern_tales-webfont.woff2') format('woff2'),
+         url('../fonts/ancient_modern_tales-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
 }
-body.customfont{
-  font-family: "custom-font";
-}
+
+
 body{
   background-image: url("../images/dark-honeycomb.png");
-  font-family: 'Righteous', cursive;
+  font-family: "ancient_modern_talesregular";
+  font-weight: 700;
+
+  
 }
 
 #loginDiv{
@@ -46,11 +53,24 @@ button:hover{
 }
 
 #name{
+  font-size: 70px;
+  font-weight: 700;
+  letter-spacing: 3px;
   margin-top: 40px;
   z-index: 1000;
   text-decoration: underline;
 }
 #submitDiv{
   margin-top: 20px;
+}
+
+.userPass{
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  margin-top: 10px
+}
+input{
+  width: 300px;
 }
 

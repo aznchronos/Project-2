@@ -1,21 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Character</title>
+    <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/bootstrap/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="styles/character.css">
     <script src="js/jquery.js"></script>
     <script src="js/character.js"></script>
+    <script src="js/adventurer.js" async defer></script>
 </head>
+
 <body>
     <div id="wrapper">
         <div class="container">
-            
-        </div>    
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="renderArea">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="titleDiv">
+                                    <h1 id=title>Are you Ready?!</h1>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class=runner>
+                                    <h1>Runner Man</h1>
+                                    <canvas class="runner" id="characterAnimation" width="1000" height="1000">
+                                </div>
+
+                                </canvas>
+                            </div>
+                            <div class="col-md-6">
+                                <img class="runner" id="door" src="images/door.png">
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-        
+
 </body>
+
 </html>

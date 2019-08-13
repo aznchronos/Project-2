@@ -7,9 +7,8 @@
   }
   body{
     background-image: url("../images/dark-honeycomb.png");
-    font-family: 'Righteous', cursive;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
-  
   #loginDiv{
     width: 90%;
     margin: auto;
