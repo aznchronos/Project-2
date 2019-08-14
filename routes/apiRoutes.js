@@ -18,6 +18,7 @@ module.exports = function(app) {
           console.log(data.dataValues);
           if (data !== null) {
             console.log("logged in succesfully");
+            //this res.json sends back the user object back to the client side ajax call
             res.json(data.dataValues);
           } else {
             console.log("invalid login credentials");

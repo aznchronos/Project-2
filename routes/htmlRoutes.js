@@ -11,4 +11,7 @@ module.exports = function(app) {
   app.get("/character", function(req, res) {
     res.sendFile(path.join(__dirname, "../views/character.html"));
   });
+  app.get("/map", function(req, res ) {
+    res.sendFile(path.join(__dirname, "../views/map.html"));
+  });
 };

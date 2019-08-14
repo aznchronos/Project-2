@@ -20,8 +20,9 @@ $(document).ready(function() {
       data: user
     }).then(function(data) {
       console.log(data);
+      //checks if data came back and if so does a redirect (currently redirecting to the create route)
       if (data !== null) {
-        window.location.href = "/create";
+        window.location.href = "/character";
       } else {
         console.log("invalid login credentials");
       }
