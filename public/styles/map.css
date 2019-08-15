@@ -1,0 +1,47 @@
+
+
+.container{
+    background-image: url(../images/map.png);
+    background-repeat: no-repeat;
+    height: 1000px;
+    margin: auto;
+}
+
+#controller{
+    text-align: center;
+    float: right;
+    position: fixed;
+    right: 0px;
+}
+.direct{
+    margin: 10px;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+    
+}
+.direct:hover{
+    background-color: grey;
+
+}
+.direct:focus{
+    outline: none;
+
+}
+#map{
+    position: relative;
+}
+#character{
+    height: 25px;
+    width: 25px;
+    background-color: red;
+    position: absolute;
+    top: 900px;
+    left: 70px;
+   
+    
+
+
+
+
+}
