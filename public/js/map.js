@@ -1,11 +1,9 @@
-$(document).ready(function(){
-    console.log("jquery ready");
+$(document).ready(function() {
+  console.log("jquery ready");
 
-    var character = $("#character");
+  var character = $("#character");
 
-    $("#up").on("click", function() {
-        
-
-        $(character).animate({top: "570px"}, 2000);
-    });
+  $("#up").on("click", function() {
+    $(character).animate({ top: "570px" }, 2000);
+  });
 });

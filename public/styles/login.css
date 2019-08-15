@@ -21,7 +21,10 @@ body{
   margin: auto;
   text-align: center;
   height: 700px;
-  background-image: url("../images/background.png");
+  background-image: url("../images/mainScreen.gif");
+  background-size: cover;
+
+  background-repeat: no-repeat;
   border : 10px solid black;
 }
 .torchgif{
