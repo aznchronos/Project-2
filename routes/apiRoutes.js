@@ -30,8 +30,6 @@ module.exports = function(app) {
               })
             .then(function(dbCharName) {
             console.log("This is the dbCharname.dataValues " + dbCharName.dataValues.charname)
-            var characterInfo = [];
-            characterInfo.push(dbCharName.dataValues.charname);
             db.charStats
               .findOne({
                 where: {
@@ -39,22 +37,26 @@ module.exports = function(app) {
                 }
               })
               .then(function(dbStats) {
-                characterInfo.push(dbStats.dataValues.HP);
-                characterInfo.push(dbStats.dataValues.Str);
-                characterInfo.push(dbStats.dataValues.Dex);
+                var characterInfo = {
+                  characterName: dbCharName.dataValues.charname,
+                  HP: dbStats.dataValues.HP,
+                  Str: dbStats.dataValues.Str,
+                  Dex: dbStats.dataValues.Dex
+                };
+                //this res.json sends back the user object back to the client side ajax call
+                // res.json(data.dataValues);
                 res.json(characterInfo);
                 console.log(characterInfo);
                 });
               });
-              
-            //this res.json sends back the user object back to the client side ajax call
-            // res.json(data.dataValues);
           } else {
             console.log("invalid login credentials");
           }
         });
     }
   });
+
+
   app.post("/newUser", function(req) {
     var newUser = req.body.name;
     var newPass = req.body.pass;
