@@ -13,6 +13,7 @@ body{
   font-family: "breathe_fireregular";
   font-weight: 700;
 
+
   
 }
 
@@ -21,7 +22,9 @@ body{
     margin: auto;
     text-align: center;
     height: 700px;
-    background-image: url("../images/background.png");
+    background-image: url("../images/castle.gif");
+    background-size: cover;
+
     border : 10px solid black;
   }
   .torchgif{
@@ -36,8 +39,9 @@ body{
   }
 
   #name{
+    color: white;
     margin-top: 40px;
-    font-size: 100px;
+    font-size: 70px;
     z-index: 1000;
     text-decoration: underline;
   }
@@ -66,6 +70,7 @@ body{
 
   .newUser{
       margin-top: 50px;
+      color: white;
   }
 
   #newUserButton{
@@ -75,6 +80,7 @@ body{
       font-size: 24px;
   }
   .requirements{
+    color: white;
     font-size: 20px;
     font-weight: 800;
 
