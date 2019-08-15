@@ -15,11 +15,40 @@ module.exports = function(app) {
           }
         })
         .then(function(data) {
-          console.log(data.dataValues);
+          // console.log(data.dataValues);
           if (data !== null) {
+            // console.log("logged in succesfully");
             console.log("logged in succesfully");
+            console.log("This is the data.id: " + data.id);
+            // console.log("This is the data ID: " + data.id);
+            // console.log("This is the db.game " + db.game);
+            db.game
+              .findOne({
+                where: {
+                  id: data.id
+                }
+              })
+            .then(function(dbCharName) {
+            console.log("This is the dbCharname.dataValues " + dbCharName.dataValues.charname)
+            var characterInfo = [];
+            characterInfo.push(dbCharName.dataValues.charname);
+            db.charStats
+              .findOne({
+                where: {
+                  id: data.id
+                }
+              })
+              .then(function(dbStats) {
+                characterInfo.push(dbStats.dataValues.HP);
+                characterInfo.push(dbStats.dataValues.Str);
+                characterInfo.push(dbStats.dataValues.Dex);
+                res.json(characterInfo);
+                console.log(characterInfo);
+                });
+              });
+              
             //this res.json sends back the user object back to the client side ajax call
-            res.json(data.dataValues);
+            // res.json(data.dataValues);
           } else {
             console.log("invalid login credentials");
           }
