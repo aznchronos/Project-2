@@ -1,0 +1,41 @@
+@font-face {
+    font-family: "custom-font";
+    src : url("/magnav.ttf") format("truetype");
+  }
+  body.customfont{
+    font-family: "custom-font";
+  }
+  body{
+    background-image: url("../images/dark-honeycomb.png");
+    font-family: 'Righteous', cursive;
+    font-weight: 800;
+    font-size: 50px;
+
+  }
+
+#wrapper{
+    width: 100%;
+    height: 1000px;
+
+    background-image: url("../images/dark-honeycomb.png");
+}
+#renderArea{
+    background-image: url("../images/background.png");
+    height: 700px;  
+    margin-top: 50px;
+    border: 15px solid black;
+}
+#title{
+    font-size: 50px;
+    font-weight: 700;
+    color: rgb(255, 0, 0);
+    text-align: center;
+    margin-top: 50px;
+
+}
+#door{
+    float: right;
+}
+.runner{
+   
+}

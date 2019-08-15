@@ -1,0 +1,76 @@
+
+@font-face {
+    font-family: 'ancient_modern_talesregular';
+    src: url('../fonts/ancient_modern_tales-webfont.woff2') format('woff2'),
+         url('../fonts/ancient_modern_tales-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+body{
+  background-image: url("../images/dark-honeycomb.png");
+  font-family: "ancient_modern_talesregular";
+  font-weight: 700;
+
+  
+}
+
+#loginDiv{
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  height: 700px;
+  background-image: url("../images/background.png");
+  border : 10px solid black;
+}
+.torchgif{
+  width: 100px;
+  height: 150px;
+}
+#torch-right{
+  float:right;
+
+
+  
+}
+
+input:focus{
+  outline: none;
+}
+
+button:focus{
+  outline: none;
+}
+button:hover{
+  background-color: grey;
+} 
+#torch-left{
+  float: left;
+
+
+}
+
+#name{
+  font-size: 70px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-top: 40px;
+  z-index: 1000;
+  text-decoration: underline;
+}
+#submitDiv{
+  margin-top: 20px;
+}
+
+.userPass{
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  margin-top: 10px
+}
+input{
+  width: 300px;
+}
+

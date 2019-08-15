@@ -16,10 +16,10 @@ module.exports = function(app) {
           }
         })
         .then(function(data) {
-          console.log(data);
+          console.log(data.dataValues);
           if (data !== null) {
-            console.log("logged in succesfully");
-            res.redirect("/loggedin");
+            logged(data);
+            res.json(data.dataValues);
           } else {
             console.log("invalid login credentials");
           }
@@ -45,34 +45,40 @@ module.exports = function(app) {
     }
   });
 
-  app.get("/game/:id", function(req, res) {
-    db.game
-      .findOne({
-        where: {
-          id: req.params.id
-        }
-      })
-      .then(function(dbCharName) {
-        var characterInfo = [];
-        characterInfo.push(dbCharName);
-        // res.json(dbCharName);
-        db.charStats
-          .findOne({
-            where: {
-              id: req.params.id
-            }
-          })
-          .then(function(dbStats) {
-            characterInfo.push(dbStats);
-            res.json(characterInfo);
-            // console.log(dbStats);
-          });
-      });
-  });
   // Create a new example
   app.post("/api/login", function(req, res) {
     db.login.create(req.body).then(function(dbLogin) {
       res.json(dbLogin);
     });
   });
+  
+  function logged(data) {
+    console.log("logged in succesfully");
+    console.log("This is the data.id: " + data.id);
+    // console.log("This is the data ID: " + data.id);
+    app.post("/game", function(req, res) {
+      db.game
+        .findOne({
+          where: {
+            id: data.id
+          }
+        })
+        .then(function(dbCharName) {
+          var characterInfo = [];
+          characterInfo.push(dbCharName);
+          // res.json(dbCharName);
+          db.charStats
+            .findOne({
+              where: {
+                id: data.id
+              }
+            })
+            .then(function(dbStats) {
+              characterInfo.push(dbStats);
+              res.json(characterInfo);
+              console.log(characterInfo);
+            });
+        });
+    });
+  }
 };
