@@ -19,10 +19,10 @@ $(document).ready(function() {
       url: "/auth",
       data: user
     }).then(function(data) {
-      console.log(data);
+      // console.log("This is the data.id for login.js " + data.ID);
       //checks if data came back and if so does a redirect (currently redirecting to the create route)
       if (data !== null) {
-        window.location.href = "/character";
+        window.location.href = "/character/";
       } else {
         console.log("invalid login credentials");
       }
@@ -30,6 +30,6 @@ $(document).ready(function() {
   });
   //redirects to create an account page
   $("#create").on("click", function() {
-    window.location.href = "/create";
+    window.location.href = "/create/";
   });
 });
