@@ -169,10 +169,13 @@ $(document).ready(function() {
       if (position === 2) {
         alterY("800px", 500, 1);
         alterButton("down", "hidden", "down");
+        alterButton("left", "hidden", "left");
       }
       if (position === 3) {
         alterY("600px", 500, 2);
         alterButton("right", "hidden", "right");
+        alterButton("up", "visible", "up");
+        alterButton("left","visible","Inspect");
       }
       if (position === 4) {
         alterY("515px", 500, 3);
