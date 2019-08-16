@@ -5,13 +5,13 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../views/login.html"));
   });
   //load create account page
-  app.get("/create/", function(req, res) {
+  app.get("/create", function(req, res) {
     res.sendFile(path.join(__dirname, "../views/create.html"));
   });
-  app.get("/character/", function(req, res) {
+  app.get("/character/:id", function(req, res) {
     res.sendFile(path.join(__dirname, "../views/character.html"));
   });
-  app.get("/map/", function(req, res ) {
+  app.get("/map", function(req, res) {
     res.sendFile(path.join(__dirname, "../views/map.html"));
   });
 };

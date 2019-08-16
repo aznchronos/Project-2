@@ -28,27 +28,27 @@ module.exports = function(app) {
                   id: data.id
                 }
               })
-            .then(function(dbCharName) {
-            // console.log("This is the dbCharname.dataValues " + dbCharName.dataValues.charname)
-            db.charStats
-              .findOne({
-                where: {
-                  id: data.id
-                }
-              })
-              .then(function(dbStats) {
-                var characterInfo = {
-                  ID: data.id,
-                  characterName: dbCharName.dataValues.charname,
-                  HP: dbStats.dataValues.HP,
-                  Str: dbStats.dataValues.Str,
-                  Dex: dbStats.dataValues.Dex
-                };
-                //this res.json sends back the user object back to the client side ajax call
-                // res.json(data.dataValues);
-                res.json(characterInfo);
-                // console.log(characterInfo);
-                });
+              .then(function(dbCharName) {
+                // console.log("This is the dbCharname.dataValues " + dbCharName.dataValues.charname)
+                db.charStats
+                  .findOne({
+                    where: {
+                      id: data.id
+                    }
+                  })
+                  .then(function(dbStats) {
+                    var characterInfo = {
+                      ID: data.id,
+                      characterName: dbCharName.dataValues.charname,
+                      HP: dbStats.dataValues.HP,
+                      Str: dbStats.dataValues.Str,
+                      Dex: dbStats.dataValues.Dex
+                    };
+                    //this res.json sends back the user object back to the client side ajax call
+                    // res.json(data.dataValues);
+                    res.json(characterInfo);
+                    // console.log(characterInfo);
+                  });
               });
           } else {
             console.log("invalid login credentials");
@@ -57,6 +57,9 @@ module.exports = function(app) {
     }
   });
 
+  // app.get("/character/:id", function(req, res){
+
+  // })
 
   app.post("/newUser", function(req) {
     var newUser = req.body.name;
@@ -76,4 +79,16 @@ module.exports = function(app) {
       console.log("error in adding to db");
     }
   });
+
+  // app.put("/map", function(req, res){
+  //   db.charStat
+  //     .findOne({
+  //       where: {
+  //         id: req.params.id
+  //       }
+  //     }).then(function(data){
+        
+  //     })
+  //   if(db.charStat.HP !== req.body.HP || db.charStat)
+  // })
 };
