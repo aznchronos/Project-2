@@ -45,3 +45,13 @@
 
 
 }
+#left{
+    visibility: hidden;
+}
+#right{
+    visibility: hidden;
+
+}
+#down{
+    visibility: hidden;
+}
