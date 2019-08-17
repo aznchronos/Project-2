@@ -39,10 +39,10 @@ module.exports = function(app) {
                   .then(function(dbStats) {
                     var characterInfo = {
                       ID: data.id,
-                      characterName: dbCharName.dataValues.charname,
-                      HP: dbStats.dataValues.HP,
-                      Str: dbStats.dataValues.Str,
-                      Dex: dbStats.dataValues.Dex
+                      characterName: dbCharName.charname,
+                      HP: dbStats.HP,
+                      Str: dbStats.Str,
+                      Dex: dbStats.Dex
                     };
                     //this res.json sends back the user object back to the client side ajax call
                     // res.json(data.dataValues);
