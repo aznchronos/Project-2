@@ -21,13 +21,10 @@ $(document).ready(function() {
     }).then(function(data) {
       //checks if data came back and if so does a redirect (currently redirecting to the create route)
       if (data !== null) {
+        console.log(data);
         // console.log("This is the data.id for login.js " + data.ID);
         // console.log("This is the data.characterName for login.js " + data.characterName);
         window.location.href = "/character/" + data.ID;
-        // history.pushState(data.ID, "CharacterPage", window.location.href = "/character/");
-        console.log("This is the new data.id" +data.ID);
-        console.log("This is the characterPage " + CharacterPage);
-
       } else {
         console.log("invalid login credentials");
       }

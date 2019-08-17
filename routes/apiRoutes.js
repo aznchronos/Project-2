@@ -57,10 +57,6 @@ module.exports = function(app) {
     }
   });
 
-  // app.get("/character/:id", function(req, res){
-
-  // })
-
   app.post("/newUser", function(req) {
     var newUser = req.body.name;
     var newPass = req.body.pass;
@@ -79,16 +75,4 @@ module.exports = function(app) {
       console.log("error in adding to db");
     }
   });
-
-  // app.put("/map", function(req, res){
-  //   db.charStat
-  //     .findOne({
-  //       where: {
-  //         id: req.params.id
-  //       }
-  //     }).then(function(data){
-        
-  //     })
-  //   if(db.charStat.HP !== req.body.HP || db.charStat)
-  // })
 };

@@ -1,9 +1,15 @@
+var url = window.location.href;
+var charId = url.slice(((url.length)-1), url.length);
+
 function openDoor() {
   $("#door").attr("src", "/images/dooropen.png");
   type = 1; 
   cycleLoop = [1, 2, 3, 4, 5, 6];
-  $("canvas").animate({ marginLeft: "850px" }, 2000, function() {
-      $("body").fadeOut(3500);
+  $("canvas").animate({ marginLeft: "850px" }, 2000, function(data) {
+      $("body").fadeOut(3500, function() {
+        window.location.href= "/map/" + charId;
+      });
+      
     });
 }
 $("#go").on("click", function() {
