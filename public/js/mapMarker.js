@@ -1,29 +1,3 @@
-function openDoor() {
-  $("#door").attr("src", "images/dooropen.png");
-  type = 1; 
-  cycleLoop = [1, 2, 3, 4, 5, 6];
-  $("canvas").animate({ marginLeft: "850px" }, 2000, function() {
-      $("body").fadeOut(3500, function() {
-        window.location.href= "/map";
-      });
-      
-
-    });
-}
-$("#go").on("click", function() {
-  cycleLoop = [1,2,3,4,5,6];
-  type = 1;
-  $("canvas").animate({ marginLeft: "720px" }, 2000, function() {
-    cycleLoop = [0, 1, 2, 3];
-    type =0;
-    setTimeout(openDoor, 1000);
-  
-    
-  
-
-    
-  });
-})
 
 var idleFrames = [0, 1, 2, 3];
 var type = 0;
@@ -39,8 +13,7 @@ img.onload = function () {
 
 let canvas = document.getElementById("characterAnimation");
 let ctx = canvas.getContext('2d');
-
-const scale = 5;
+const scale = 1.5;
 const width = 50;
 const height = 37;
 const scaledWidth = width * scale;

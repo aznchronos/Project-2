@@ -7,9 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="/js/jquery.js"></script>
+    <script async defer src="js/mapMarker.js"></script>
     <script src="/js/map.js"></script>
     <link rel="stylesheet" href="/styles/bootstrap/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/styles/map.css">
+
     
 </head>
 
@@ -19,7 +21,7 @@
         <div id=map>
 
             <div id="controller">
-                <button class="direct" id="up">Up</button>
+                <button class="arrow direct" id="up">Up</button>
                 <br>
                 <button class="direct" id="left">Left</button>
                 <button class="direct" id="right">Right</button>
@@ -37,17 +39,18 @@
                     <div class="col-md-12">
                         <div id= "hpDiv">
                             <img class="heartGif" src="images/heartGif.gif">  
-                            <img class="heartGif" src="images/heartGif.gif">  
-                            <img class="heartGif" src="images/heartGif.gif">
                             <h3>HP: </h3>
+                        </div>
+                        <div id="scoreDiv">
+                            <img class="coinGif" src ="images/coingif.gif">
                         </div>
                     </div>
                 </div>
                 
             </div>
 
-            <div id="character"></div>
-            <canvas id=characterAnimation width=100 height=100></canvas>
+            <canvas class="character" id=characterAnimation width=200 height=200></canvas>
+            
         </div>
 
     </div>
