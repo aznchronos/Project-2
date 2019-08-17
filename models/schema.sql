@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS exampledb;
-CREATE DATABASE exampledb;
+drop database if exists game_db;
+create database game_db;
 
-DROP DATABASE IF EXISTS testdb;
-CREATE DATABASE testdb;
+drop database if exists game_state;
+create database game_state;
