@@ -12,9 +12,12 @@ module.exports = function(sequelize, DataTypes) {
     },
     gamestate: {
       type: DataTypes.INTEGER,
-      default: 0
+      defaultValue: 0
     },
-
+    score: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
     description: DataTypes.TEXT
   });
   return game;

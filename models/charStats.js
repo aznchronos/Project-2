@@ -5,21 +5,21 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1, 2]
       },
-      default: 10
+      defaultValue: 10
     },
     Str: {
       type: DataTypes.INTEGER,
       validate: {
         len: [1, 2]
       },
-      default: 1
+      defaultValue: 1
     },
     Dex: {
       type: DataTypes.INTEGER,
       validate: {
         len: [1, 2]
       },
-      default: 1
+      defaultValue: 1
     }
   });
   return charStats;
