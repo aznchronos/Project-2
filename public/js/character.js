@@ -6,8 +6,6 @@ function openDoor() {
       $("body").fadeOut(3500, function() {
         window.location.href= "/map";
       });
-      
-
     });
 }
 $("#go").on("click", function() {
@@ -16,18 +14,12 @@ $("#go").on("click", function() {
   $("canvas").animate({ marginLeft: "720px" }, 2000, function() {
     cycleLoop = [0, 1, 2, 3];
     type =0;
-    setTimeout(openDoor, 1000);
-  
-    
-  
-
-    
+    setTimeout(openDoor, 1000);   
   });
 })
 
 var idleFrames = [0, 1, 2, 3];
 var type = 0;
-
 let img = new Image();
 img.src = '../images/AdSprite.png';
 

@@ -37,7 +37,7 @@
 #stats{
     position: fixed;
     right: 50px;
-    border: 10px solid white;
+    border: 10px solid black;
     background-image: url(../images/background.png);
     border-style: inset;
     border-radius: 8px;
@@ -121,13 +121,10 @@
 }
 
     
-   
-    
-
-i {
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-  }
-  
+.coinGif{
+    width: 100px;
+    height: 100px;
+}
+#scoreDiv{
+    font-weight: 800;
+}

@@ -43,6 +43,7 @@ $(document).ready(function() {
         alterY("580px", 1000, 2);
         alterButton("left", "visible", "Inspect");
         alterButton("down", "visible", "down");
+
       }
       if (position === 2) {
         alterY("495px", 1000, 3);
@@ -84,6 +85,9 @@ $(document).ready(function() {
   }
   function loadLeft() {
     $("body").on("click", "#left", function() {
+      if position == 1 {
+        
+      }
       if (position === 5) {
         alterX("50px", 1000, 3);
         alterButton("left", "hidden", "left");
@@ -178,6 +182,7 @@ $(document).ready(function() {
         alterButton("right", "hidden", "right");
         alterButton("up", "visible", "up");
         alterButton("left","visible","Inspect");
+        
       }
       if (position === 4) {
         alterY("495px", 1000, 3);
@@ -213,3 +218,5 @@ $(document).ready(function() {
   loadRight();
   loadDown();
 });
+
+
