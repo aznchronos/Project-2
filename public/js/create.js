@@ -66,10 +66,10 @@ function requirementChecker(newUser) {
     document.querySelector(".warning2").style.display = "block";
   } // If everything, but the Character Name, fullfills the conditions
   else if (
-    newUser.name.length < 5 &&
+    newUser.name.length >= 5 &&
+    newUser.name.length <= 15 &&
     newUser.pass.length >= 5 &&
-    newUser.char.length >= 5 &&
-    newUser.char.length <= 15
+    (newUser.char.length < 5 || newUser.char.length > 15)
   ) {
     document.querySelector(".warning3").style.display = "block";
   } // 2 Missing:
