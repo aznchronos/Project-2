@@ -60,8 +60,9 @@ module.exports = function(app) {
   app.post("/newUser", function(req) {
     var newUser = req.body.name;
     var newPass = req.body.pass;
+    var newChar = req.body.char;
 
-    if (newUser && newPass) {
+    if (newUser && newPass && newChar) {
       db.login
         .create({
           username: newUser,
@@ -70,6 +71,24 @@ module.exports = function(app) {
         .then(function(data) {
           console.log("data succesfully added to database");
           console.log(data);
+          db.game
+            .create({
+              charname: newChar
+            })
+            .then(function(result) {
+              console.log("New character has been added to database");
+              console.log(result);
+              db.charStats
+                .create({
+                  HP: 10,
+                  Str: 5,
+                  Dex: 1
+                })
+                .then(function(res) {
+                  console.log("Added stats for new character");
+                  console.log(res);
+                });
+            });
         });
     } else {
       console.log("error in adding to db");

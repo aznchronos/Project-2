@@ -9,10 +9,14 @@ $(document).ready(function() {
     var newPass = $("#newPass")
       .val()
       .trim();
+    var newChar = $("#newChar")
+      .val()
+      .trim();
 
     var newUser = {
       name: newUsername,
-      pass: newPass
+      pass: newPass,
+      char: newChar
     };
     //conditionals to check if user and pass have required lengths
     if (
