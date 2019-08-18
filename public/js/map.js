@@ -1,5 +1,36 @@
+
+
 $(document).ready(function() {
   var character = $(".character");
+  let textNook = "You peek down the hall peering into the darkness and run headfirst into a hulking monster!";
+  let textAltar = "You enter a circular room with nothing inside except an altar with a red skull!"; 
+  let textBookcase = "As you enter the room you see a shelf full of books of a variety of colors!";
+  let textChest = "You round the corner and find yourself in front of an unlocked chest seemingly overflowing with treasure!"
+  let i = 0;
+
+
+  function type(text) {
+    console.log("typewriter loading")
+    $("#textBox").fadeIn("5000");
+    
+    if (i < text.length) {
+      $("#text").append(text.charAt(i));
+      i ++;
+      setTimeout(function() {
+        type(text);
+      }, 20);
+    }
+  }
+
+  function empty() {
+    i = 0;
+    $("#text").empty();
+    $("#textBox").fadeOut(500);
+  }
+  
+  
+
+ 
 
   //character element from html
 
@@ -44,17 +75,27 @@ $(document).ready(function() {
         alterButton("left", "visible", "Inspect");
         alterButton("down", "visible", "down");
 
+
       }
       if (position === 2) {
+        empty();
+  
         alterY("495px", 200, 3);
         alterButton("left", "hidden", "left");
         alterButton("right", "visible", "right");
       }
       if (position === 3) {
+       
         alterY("380px", 200, 4);
         alterButton("up", "visible", "Inspect");
         alterButton("right", "hidden", "right");
         alterButton("down", "visible", "down");
+      }
+      if (position === 4) {
+        type(textAltar);
+        
+       
+   
       }
       if (position === 5) {
         alterY("240px", 200, 7);
@@ -85,7 +126,10 @@ $(document).ready(function() {
   }
   function loadLeft() {
     $("body").on("click", "#left", function() {
-      
+      if (position === 2) {
+        type(textNook);
+       
+      }
       if (position === 5) {
         alterX("50px", 200, 3);
         alterButton("left", "hidden", "left");
@@ -110,6 +154,14 @@ $(document).ready(function() {
         alterButton("left", "visible", "Inspect");
         alterButton("down", "hidden", "down");
         alterButton("right", "visible", "right");
+      }
+      if (position === 10) {
+        type(textBookcase);
+
+      }
+
+      if (position === 11) {
+        type(textChest);
       }
       if (position === 13) {
         alterX("280px", 200, 12);
@@ -154,6 +206,7 @@ $(document).ready(function() {
         alterButton("down", "visible", "down");
       }
       if (position === 10) {
+        empty();
         alterX("270px", 200, 9);
         alterButton("left", "visible", "left");
         alterButton("right", "hidden", "right");
@@ -171,6 +224,8 @@ $(document).ready(function() {
   function loadDown() {
     $("body").on("click", "#down", function() {
       if (position === 2) {
+        
+        empty();
         alterY("800px", 200, 1);
         alterButton("down", "hidden", "down");
         alterButton("left", "hidden", "left");
@@ -188,6 +243,7 @@ $(document).ready(function() {
         alterButton("right", "visible", "right");
       }
       if (position === 5) {
+        empty();
         alterY("770px", 200, 12);
         alterButton("left", "hidden", "left");
         alterButton("down", "visible", "Ready?");
@@ -216,5 +272,3 @@ $(document).ready(function() {
   loadRight();
   loadDown();
 });
-
-
