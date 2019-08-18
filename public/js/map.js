@@ -27,6 +27,10 @@ $(document).ready(function() {
     $("#text").empty();
     $("#textBox").fadeOut(500);
   }
+  function renderBattle(){
+    $(".container").css("display", "none");
+    $("#renderBattle").fadeIn(2000);
+  }
   
   
 
@@ -71,6 +75,7 @@ $(document).ready(function() {
   function loadUp() {
     $("body").on("click", "#up", function() {
       if (position === 1) {
+       
         alterY("580px", 200, 2);
         alterButton("left", "visible", "Inspect");
         alterButton("down", "visible", "down");

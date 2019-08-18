@@ -44,7 +44,7 @@
     width: 325px;
     height : 200px;
     background-color:black;
-    display: none;
+    
     
     
 
@@ -52,6 +52,12 @@
 #text{
     margin-top: 0px;
     margin-left: 10px;
+}
+
+#buttonDiv{
+    position: fixed;
+    right: 25px;
+    top: 400px;
 }
 #stats{
     position: fixed;
@@ -141,4 +147,8 @@
 }
 #scoreDiv{
     font-weight: 800;
+}
+
+.container{
+   
 }
