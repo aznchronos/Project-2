@@ -7,12 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="/js/jquery.js"></script>
-    <script async defer src="js/mapMarker.js"></script>
+   
+  
+
     <script src="/js/map.js"></script>
     <link rel="stylesheet" href="/styles/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="battle.css">
+ 
     <link rel="stylesheet" type="text/css" href="/styles/map.css">
 
-    
+
 </head>
 
 <body>
@@ -31,7 +35,12 @@
 
 
             <div id="textBox">
-                <h3 id="text"></p>
+                <h3 id="text">
+
+            </div>
+            <div id="characterAnimation"></div>
+            <div id="buttonDiv">
+                <button id="start">Start Battle!</button>
             </div>
             <div id="stats">
                 <div class="row">
@@ -42,24 +51,42 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div id= "hpDiv">
-                            <img class="heartGif" src="images/heartGif.gif">  
+                        <div id="hpDiv">
+                            <img class="heartGif" src="images/heartGif.gif">
                             <h3>HP: </h3>
                         </div>
                         <div id="scoreDiv">
-                            <img class="coinGif" src ="images/coingif.gif">
+                            <img class="coinGif" src="images/coingif.gif">
                             <h3>Score: </h3>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
 
-            <canvas class="character" id=characterAnimation width="200" height="200"></canvas>
-            
+         
+
         </div>
 
     </div>
+    <div id="renderBattle">
+        <div id="battleScreen">
+            <canvas id="adventurerAnimationID" width="160" height="130"></canvas>
+            <canvas id="demonAnimationID" width="600" height="450"></canvas>
+            <canvas id="minotaurAnimationID" width="250" height="180"></canvas>
+        </div>
+
+
+
+        <div id="commands">
+            <div class="commands" id="attackCommand">ATTACK</div>
+            <div class="commands" id="itemsCommand">ITEMS</div>
+            <div class="commands" id="runCommand">RUN</div>
+        </div>
+    </div>
+
+
+    <script src="./sprites.js" async defer></script>
 
 </body>
 

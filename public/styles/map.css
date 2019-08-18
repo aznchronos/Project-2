@@ -44,7 +44,7 @@
     width: 325px;
     height : 200px;
     background-color:black;
-    
+    display:none;
     
     
 
@@ -57,7 +57,14 @@
 #buttonDiv{
     position: fixed;
     right: 25px;
-    top: 400px;
+    top: 570px;
+    font-size: 35px;
+    font-weight: 700;
+    display: none;
+}
+#start{
+    width: 200px;
+    height: 75px;
 }
 #stats{
     position: fixed;
@@ -70,6 +77,7 @@
     width: 175px;
     height: 300px;
     top: 10px;
+    display: none;
 }
 .direct{
     margin: 10px;
@@ -136,8 +144,13 @@
 
 #characterAnimation{
     position: absolute;
-    top: 775px;
-    left: 45px;
+    top: 800px;
+    left: 67px;
+    width: 37px;
+    height: 37px;
+    background-color: rgb(117, 17, 17);
+    border: 5px solid black;
+    border-radius: 20px;
 }
 
     
@@ -150,5 +163,6 @@
 }
 
 .container{
+  
    
 }

@@ -60,16 +60,22 @@
     margin: auto;
     margin-top : 50px;
     display:none;
+    
 }
 .commands{
     border: 10px solid black;
     border-radius: 8px;
     background-color: grey;
     font-size: 50px;
+    text-align: center;
+    padding-top: 10px;
     
 }
 .commands:focus{
     outline: none;
+}
+.commands:hover{
+    background-color: rgb(68, 66, 66)
 }
 
 

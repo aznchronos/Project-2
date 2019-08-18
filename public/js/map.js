@@ -1,7 +1,7 @@
 
 
 $(document).ready(function() {
-  var character = $(".character");
+  var character = $("#characterAnimation");
   let textNook = "You peek down the hall peering into the darkness and run headfirst into a hulking monster!";
   let textAltar = "You enter a circular room with nothing inside except an altar with a red skull!"; 
   let textBookcase = "As you enter the room you see a shelf full of books of a variety of colors!";
@@ -11,7 +11,8 @@ $(document).ready(function() {
 
   function type(text) {
     console.log("typewriter loading")
-    $("#textBox").fadeIn("5000");
+    $("#textBox").fadeIn();
+    $("#buttonDiv").fadeIn()
     
     if (i < text.length) {
       $("#text").append(text.charAt(i));
@@ -32,7 +33,9 @@ $(document).ready(function() {
     $("#renderBattle").fadeIn(2000);
   }
   
-  
+  $("body").on("click", "#start", function() {
+    renderBattle();
+  });
 
  
 
@@ -85,13 +88,13 @@ $(document).ready(function() {
       if (position === 2) {
         empty();
   
-        alterY("495px", 200, 3);
+        alterY("510px", 200, 3);
         alterButton("left", "hidden", "left");
         alterButton("right", "visible", "right");
       }
       if (position === 3) {
        
-        alterY("380px", 200, 4);
+        alterY("400px", 200, 4);
         alterButton("up", "visible", "Inspect");
         alterButton("right", "hidden", "right");
         alterButton("down", "visible", "down");
@@ -103,10 +106,10 @@ $(document).ready(function() {
    
       }
       if (position === 5) {
-        alterY("240px", 200, 7);
+        alterY("260px", 200, 7);
       }
       if (position === 7) {
-        alterY("95px", 200, 9);
+        alterY("110px", 200, 9);
         alterButton("right", "hidden", "right");
         alterButton("up", "hidden", "up");
       }
@@ -114,13 +117,13 @@ $(document).ready(function() {
         alterButton("right", "visible", "right");
         alterButton("left", "visible", "left");
         alterButton("down", "visible", "down");
-        alterY("46px", 200, 7);
-        alterX("705px", 200, 7);
-        $(character).animate({ left: "-=80px", top: "+=60px" }, 200);
-        alterY("190px", 200, 7);
-        alterX("480px", 200, 7);
-        alterY("240px", 200, 7);
-        alterX("280px", 200, 7);
+        alterY("55px", 500, 7);
+        alterX("705px", 500, 7);
+        $(character).animate({ left: "-=60px", top: "+=75px" }, 500);
+        alterY("207px", 500, 7);
+        alterX("490px", 500, 7);
+        alterY("260px", 500, 7);
+        alterX("295px", 500, 7);
       }
       if (position === 12) {
         alterButton("left", "visible", "left");
@@ -136,11 +139,11 @@ $(document).ready(function() {
        
       }
       if (position === 5) {
-        alterX("50px", 200, 3);
+        alterX("67px", 200, 3);
         alterButton("left", "hidden", "left");
       }
       if (position === 6) {
-        alterX("270px", 200, 5);
+        alterX("295px", 200, 5);
         alterButton("up", "visible", "up");
         alterButton("left", "visible", "left");
         alterButton("right", "visible", "right");
@@ -148,14 +151,14 @@ $(document).ready(function() {
         alterButton("down", "visible", "down");
       }
       if (position === 7) {
-        alterX("115px", 200, 8);
+        alterX("135px", 200, 8);
         alterButton("up", "hidden", "up");
         alterButton("left", "visible", "Inspect");
         alterButton("down", "hidden", "down");
         alterButton("right", "visible", "right");
       }
       if (position === 9) {
-        alterX("60px", 200, 10);
+        alterX("80px", 200, 10);
         alterButton("left", "visible", "Inspect");
         alterButton("down", "hidden", "down");
         alterButton("right", "visible", "right");
@@ -169,7 +172,7 @@ $(document).ready(function() {
         type(textChest);
       }
       if (position === 13) {
-        alterX("280px", 200, 12);
+        alterX("295px", 200, 12);
         alterButton("up", "visible", "up");
         alterButton("down", "visible", "down");
         alterButton("right", "visible", "right");
@@ -180,13 +183,13 @@ $(document).ready(function() {
   function loadRight() {
     $("body").on("click", "#right", function() {
       if (position === 3) {
-        alterX("270px", 200, 5);
+        alterX("295px", 200, 5);
         alterButton("up", "visible", "up");
         alterButton("down", "visible", "down");
         alterButton("left", "visible", "left");
       }
       if (position === 5) {
-        alterX("615px", 200, 6);
+        alterX("630px", 200, 6);
         alterButton("up", "visible", "Inspect");
         alterButton("left", "visible", "left");
         alterButton("right", "hidden", "right");
@@ -196,23 +199,23 @@ $(document).ready(function() {
         alterButton("right", "hidden", "right");
         alterButton("left", "visible", "Inspect");
         alterButton("down", "visible", "Inspect");
-        alterX("480px", 200, 11);
-        alterY("195px", 200, 11);
-        alterX("630px", 200, 11);
-        alterY("95px", 200, 11);
-        $(character).animate({ left: "+=80px", top: "-=55px" }, 200);
-        alterX("805px", 200, 11);
-        alterY("245px", 200, 11);
+        alterX("490px", 500, 11);
+        alterY("207px", 500, 11);
+        alterX("645px", 500, 11);
+        alterY("120px", 500, 11);
+        $(character).animate({ left: "+=70px", top: "-=65px" }, 500);
+        alterX("817px", 500, 11);
+        alterY("260px", 500, 11);
       }
       if (position === 8) {
-        alterX("280px", 200, 7);
+        alterX("295px", 200, 7);
         alterButton("up", "visible", "up");
         alterButton("left", "visible", "left");
         alterButton("down", "visible", "down");
       }
       if (position === 10) {
         empty();
-        alterX("270px", 200, 9);
+        alterX("295px", 200, 9);
         alterButton("left", "visible", "left");
         alterButton("right", "hidden", "right");
         alterButton("down", "visible", "down");
@@ -243,21 +246,21 @@ $(document).ready(function() {
         
       }
       if (position === 4) {
-        alterY("495px", 200, 3);
+        alterY("510px", 200, 3);
         alterButton("up", "visible", "up");
         alterButton("right", "visible", "right");
       }
       if (position === 5) {
         empty();
-        alterY("770px", 200, 12);
+        alterY("785px", 200, 12);
         alterButton("left", "hidden", "left");
         alterButton("down", "visible", "Ready?");
       }
       if (position === 7) {
-        alterY("495px", 200, 5);
+        alterY("510px", 200, 5);
       }
       if (position === 9) {
-        alterY("240px", 200, 7);
+        alterY("260px", 200, 7);
         alterButton("up", "visible", "up");
         alterButton("right", "visible", "right");
       }
@@ -265,9 +268,9 @@ $(document).ready(function() {
         alterButton("up", "hidden", "up");
         alterButton("right", "hidden", "right");
         alterButton("down", "hidden", "down");
-        alterY("918px", 200, 14);
-        alterX("800px", 200, 14);
-        alterY("495px", 200, 14);
+        alterY("935px", 1000, 14);
+        alterX("817px", 1000, 14);
+        alterY("495px", 1000, 14);
       }
     });
   }

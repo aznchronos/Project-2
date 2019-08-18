@@ -2,7 +2,7 @@
 //ADVENTURER ANIMATION
 //////////////////////////////////////////////////////////////
 let adImg = new Image();
-adImg.src = './AdSprite.png';
+adImg.src = './charSprite.png';
 
 
 
