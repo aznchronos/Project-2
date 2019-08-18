@@ -18,18 +18,19 @@ $(document).ready(function() {
       pass: newPass,
       char: newChar
     };
-    //conditionals to check if user and pass have required lengths
 
+    //conditionals to check if user and pass have required lengths
     // If everything fulfills the conditions
     if (
-      newUsername.length >= 5 &&
-      newUsername.length <= 15 &&
-      newPass.length >= 5 &&
-      newChar.length >= 5 &&
-      newChar.length <= 15
+      newUser.name.length >= 5 &&
+      newUser.name.length <= 15 &&
+      newUser.pass.length >= 5 &&
+      newUser.char.length >= 5 &&
+      newUser.char.length <= 15
     ) {
       newAccount(newUser);
     } else {
+      removeWarnings();
       requirementChecker(newUser);
     }
   });
@@ -91,10 +92,10 @@ function requirementChecker(newUser) {
     document.querySelector(".warning3").style.display = "block";
   } // If everything is missing, but Character Name
   else if (
-    (newUsername.length < 5 || newUsername.length > 15) &&
-    newPass.length < 5 &&
-    newChar.length >= 5 &&
-    newChar.length <= 15
+    (newUser.name.length < 5 || newUser.name.length > 15) &&
+    newUser.pass.length < 5 &&
+    newUser.char.length >= 5 &&
+    newUser.char.length <= 15
   ) {
     document.querySelector(".warning").style.display = "block";
     document.querySelector(".warning2").style.display = "block";
@@ -104,4 +105,8 @@ function requirementChecker(newUser) {
     document.querySelector(".warning2").style.display = "block";
     document.querySelector(".warning3").style.display = "block";
   }
+}
+
+function removeWarnings(){
+  $(".warning, .warning2, .warning3").css("display", "none");
 }
