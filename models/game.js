@@ -8,7 +8,8 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     loggedin: {
-      type: DataTypes.BOOLEAN
+      type: DataTypes.BOOLEAN,
+      defaultValue: 0
     },
     gamestate: {
       type: DataTypes.INTEGER,
