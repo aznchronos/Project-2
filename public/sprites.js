@@ -495,21 +495,30 @@ function minDrawFrameDeath(frameX, frameY, canvasX, canvasY) {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 //LOGIC FOR BATTLEING
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
+let currentCharPercent = 100;
+let currentEnemyPercent = 100;
+let currentHPText = $("#currentHP");
+let currentEnemyHPText = $("#currentEnemy");
+
+
 
 
 function takeDamage() {
     var missChance = Math.floor((Math.random() * 5) + 1);
-    if (adventurerOBJ.health > 0) {
-        currentPercent -= 14;
+    if (adventurerOBJ.health > 0 && missChance !== 5) {
+        currentCharPercent -= 14;
         adventurerOBJ.health -= enemyOBJ.strength;
-        console.log(currentPercent)
-        $("#inner").animate({width: currentPercent +"%"})
+        console.log("character % " + currentCharPercent)
+        $("#inner").animate({width: currentCharPercent +"%"});
        
-        updateHP();
+        updateCharHP();
+
+    } else if (missChance === 5) {
+        console.log("You Missed!");
 
     } else if (adventurerOBJ.health < 0) {
         adventurerOBJ.health = 0;
-        updateHP();
+        updateCharHP();
         $("#inner").animate({width: "0%"})
     }
     console.log(missChance);
@@ -519,6 +528,14 @@ function takeDamage() {
 
 
 function dealDamage() {
+    var missChance = Math.floor((Math.random() * 5) + 1);
+    if (enemyOBJ.health > 0 ){
+        currentEnemyPercent -=14;
+        enemyOBJ.health -= adventurerOBJ.strength;
+        $("#innerEnemy").animate({width: currentEnemyPercent + "%"});
+        updateEnemyHP();
+
+    }
 
 }
 
@@ -530,15 +547,15 @@ var adventurerOBJ = {
     score: 0
 }
 var enemyOBJ;
-function updateHP() {
+//variable declarations
+
+function updateCharHP() {
     $(currentHPText).html(adventurerOBJ.health);
 
 }
-
-//variable declarations
-let currentHPText = $("#currentHP");
-
-let currentPercent = 100
+function updateEnemyHP() {
+    $(currentEnemyHPText).html(enemyOBJ.health);
+}
 
 
 
@@ -558,6 +575,7 @@ function encounter(){
     if(enemyChoice > 7){
         enemyOBJ = {
             name: "Demon",
+            hpTotal: 17,
             health:17,
             strength:4,
             speed: 110
@@ -575,6 +593,7 @@ function encounter(){
     else{
         enemyOBJ = {
             name: "Minotaur",
+            hpTotal: 15,
             health: 15,
             strength: 2,
             speed: 20,
@@ -586,6 +605,7 @@ function encounter(){
             'left': '300px'
            });
            minInit();
+           
     }
 }
 
@@ -594,6 +614,7 @@ $("#attackCommand").on("click", function(){
     if(adventurerOBJ.speed > enemyOBJ.speed){
         adAnimation = 0;
         init();
+        dealDamage();
         
 
         if(enemyOBJ.name =="Minotaur"){
