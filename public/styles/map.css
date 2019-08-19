@@ -163,6 +163,10 @@
 }
 
 .container{
+    display: none;
   
    
+}
+.progress-bar{
+    width: 50%;
 }

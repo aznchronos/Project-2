@@ -31,16 +31,16 @@
 }
 #attackCommand{
     position: absolute;
-    width:300px;
-    height:125px;
+    width:250px;
+    height:100px;
     left: 450px;
     top: 20px;
 
 }
 #itemsCommand{
     position: absolute;
-    height:125px;
-    width:300px;
+    height:100px;
+    width:250px;
     bottom:0px;
     left:0px;
    
@@ -48,8 +48,8 @@
 }
 #runCommand{
     position: absolute;
-    height:125px;
-    width:300px;
+    height:100px;
+    width:250px;
     bottom:0px;
     right:0px;
 
@@ -59,14 +59,15 @@
     
     margin: auto;
     margin-top : 50px;
-    display:none;
+    display: block;
+    
     
 }
 .commands{
     border: 10px solid black;
     border-radius: 8px;
     background-color: grey;
-    font-size: 50px;
+    font-size: 32px;
     text-align: center;
     padding-top: 10px;
     
@@ -78,4 +79,65 @@
     background-color: rgb(68, 66, 66)
 }
 
+.progress-bar{
+    width: 50%;
+}
 
+#playerHP{
+    position: absolute;
+    width: 300px;
+    height: 50px;
+    bottom: 200px;
+    left: 100px;
+    border: 2px solid black;
+    
+    background-color: grey;
+}
+#inner{
+    width: 100%;
+    height: 46px;
+    background-color: rgb(190, 30, 30);
+    opacity: 0.8;
+    color: white;
+    padding: 10px;
+    
+}
+#textHP{
+    font-size: 20px;
+    color: white;
+    position: absolute;
+    width: 300px;
+    height: 50px;
+    bottom: 190px;
+    left: 115px;
+
+}
+#enemyHP{
+
+    position: absolute;
+    width: 300px;
+    height: 50px;
+    bottom: 200px;
+    right: 100px;
+    border: 2px solid black;
+    
+    background-color: grey;
+}
+#innerEnemy{
+    width: 100%;
+    height: 46px;
+    background-color: rgb(190, 30, 30);
+    opacity: 0.8;
+    color: white;
+    padding: 10px;
+}
+#textEnemy{
+    font-size: 20px;
+    color: white;
+    position: absolute;
+    width: 300px;
+    height: 50px;
+    bottom: 190px;
+    right: 80px;
+
+}

@@ -497,13 +497,50 @@ function minDrawFrameDeath(frameX, frameY, canvasX, canvasY) {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+function takeDamage() {
+    var missChance = Math.floor((Math.random() * 5) + 1);
+    if (adventurerOBJ.health > 0) {
+        currentPercent -= 14;
+        adventurerOBJ.health -= enemyOBJ.strength;
+        console.log(currentPercent)
+        $("#inner").animate({width: currentPercent +"%"})
+       
+        updateHP();
+
+    } else if (adventurerOBJ.health < 0) {
+        adventurerOBJ.health = 0;
+        updateHP();
+        $("#inner").animate({width: "0%"})
+    }
+    console.log(missChance);
+   
+    console.log(adventurerOBJ.health);
+}
+
+
+function dealDamage() {
+
+}
+
 var adventurerOBJ = {
+    hpTotal: 15,
     health: 15,
     strength:2,
     speed:100,
     score: 0
 }
 var enemyOBJ;
+function updateHP() {
+    $(currentHPText).html(adventurerOBJ.health);
+
+}
+
+//variable declarations
+let currentHPText = $("#currentHP");
+
+let currentPercent = 100
+
+
 
 
 
@@ -562,6 +599,7 @@ $("#attackCommand").on("click", function(){
         if(enemyOBJ.name =="Minotaur"){
             minAnimation = 0;
             setTimeout(minInit, 1000);
+            setTimeout(takeDamage, 1000);
             
             
 

@@ -6,6 +6,8 @@ $(document).ready(function() {
   let textAltar = "You enter a circular room with nothing inside except an altar with a red skull!"; 
   let textBookcase = "As you enter the room you see a shelf full of books of a variety of colors!";
   let textChest = "You round the corner and find yourself in front of an unlocked chest seemingly overflowing with treasure!"
+  let textStatue = "You enter a rectangular room with a large looming grey statue reseumbling a gargoyle!"
+  let textNothing = "Nothing interesting here!"
   let i = 0;
 
 
@@ -108,6 +110,9 @@ $(document).ready(function() {
       if (position === 5) {
         alterY("260px", 200, 7);
       }
+      if (position === 6) {
+        type(textStatue);
+      }
       if (position === 7) {
         alterY("110px", 200, 9);
         alterButton("right", "hidden", "right");
@@ -143,6 +148,7 @@ $(document).ready(function() {
         alterButton("left", "hidden", "left");
       }
       if (position === 6) {
+        empty();
         alterX("295px", 200, 5);
         alterButton("up", "visible", "up");
         alterButton("left", "visible", "left");
@@ -246,6 +252,7 @@ $(document).ready(function() {
         
       }
       if (position === 4) {
+        empty();
         alterY("510px", 200, 3);
         alterButton("up", "visible", "up");
         alterButton("right", "visible", "right");
@@ -263,6 +270,9 @@ $(document).ready(function() {
         alterY("260px", 200, 7);
         alterButton("up", "visible", "up");
         alterButton("right", "visible", "right");
+      }
+      if (position === 11) {
+        type(textNothing);
       }
       if (position === 12) {
         alterButton("up", "hidden", "up");

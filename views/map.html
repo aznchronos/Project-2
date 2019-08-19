@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="/js/jquery.js"></script>
-   
-  
+
+
 
     <script src="/js/map.js"></script>
     <link rel="stylesheet" href="/styles/bootstrap/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="battle.css">
- 
+
     <link rel="stylesheet" type="text/css" href="/styles/map.css">
 
 
@@ -64,7 +64,7 @@
 
             </div>
 
-         
+
 
         </div>
 
@@ -75,10 +75,14 @@
             <canvas id="demonAnimationID" width="600" height="450"></canvas>
             <canvas id="minotaurAnimationID" width="250" height="180"></canvas>
         </div>
-
-
-
+    
         <div id="commands">
+            <div id="playerHP"><p id="inner"></p></div>
+            <div id="textHP">Current HP: <span id="currentHP"> 15</span>/ 15</div>
+
+            <div id="enemyHP"><p id="innerEnemy"></p></div>
+            <div id="textEnemy">Current HP: <span id="currentEnemy"></span></div>
+
             <div class="commands" id="attackCommand">ATTACK</div>
             <div class="commands" id="itemsCommand">ITEMS</div>
             <div class="commands" id="runCommand">RUN</div>
