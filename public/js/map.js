@@ -1,13 +1,15 @@
 
 
 
-$(document).ready(function () {
+$(document).ready(function() {
+
 
   //grabs character div
   var character = $("#characterAnimation");
+
   //variables that hold text for possible events
   let textNook = "You peek down the hall peering into the darkness and run headfirst into a hulking monster!";
-  let textAltar = "You enter a circular room with nothing inside except an altar with a red skull!";
+  let textAltar = "You enter a circular room with nothing inside except an altar with a red skull!"; 
   let touchAltar = "Your rage grows..."
   let textBookcase = "You enter a room and see a shelf full of books with a variety of colors. A particular black book grabs your eye!";
   let touchBookcase = "From what you can discern this book might prove useful against a certian blue fire!";
@@ -17,25 +19,19 @@ $(document).ready(function () {
   let textNothing = "Nothing interesting here!";
   let textSurprise = "You plunge into the chest grabbing all you can see but don't see something creeping behind you...";
   let textTrapDoor = "You see a wooden board on the floor you think you might be able to move it!";
-  let chestTaken = "The treasure have been emptied...";
-  let bookTaken = "You've learned all you can from this book...";
-  let statueTouched = "Nothing happens...";
-  
-  
+
   let textBoss = "This room has a feeling of finality...";
-  
 
   let i = 0;
+
   //if we wanted to implement not being able to farm enemies
   let firstBattle = false;
   let secondBattle = false;
   let thirdBattle = false;
-  let bossBattle = false;
-  $("body").on("click", ".direct", function () {
-    $(".direct").css("display", "none");
-  });
+  let bossBattle =false;
+
   //when the battle is over return to map
-  $("body").on("click", ".return", function () {
+  $("body").on("click", ".return", function() {
     $("#endBattle").fadeOut(1000);
   })
   //function that creates the typewriter effect and fades in a respective button
@@ -43,13 +39,13 @@ $(document).ready(function () {
     console.log("typewriter loading")
     $("#textBox").fadeIn();
     $("#" + button).fadeIn();
-
+    
     if (i < text.length) {
       $("#text").append(text.charAt(i));
-      i++;
-      setTimeout(function () {
+      i ++;
+      setTimeout(function() {
         type(text);
-      }, 5);
+      }, 20);
     }
   }
   //clears out textbox
@@ -59,33 +55,33 @@ $(document).ready(function () {
     $("#textBox").css("display", "none");
     $(".actions").fadeOut(500);
   }
-  function renderBattle() {
+  function renderBattle(){
     $(".container").css("display", "none");
     $("#renderBattle").fadeIn(2000);
   }
-
-  $("body").on("click", "#start", function () {
+  
+  $("body").on("click", "#start", function() {
     renderBattle();
     $("#start").css("display", "none");
     empty();
   });
-  $("body").on("click", "#boss", function () {
+  $("body").on("click", "#boss", function() {
     renderBattle();
   })
 
-
+ 
 
   //character element from html
 
   //object of possible encoutners within the map called later in the position functions
   var possibleEncounter = {
-    getItem: function () {
+    getItem: function() {
       console.log("You got an Item!");
     },
-    statBoost: function () {
+    statBoost: function() {
       console.log("You got a stat boost!");
     },
-    enounter: function () {
+    enounter: function() {
       console.log("Enemy encounter!");
     }
   };
@@ -96,27 +92,25 @@ $(document).ready(function () {
   }
 
   function alterY(amount, speed, positionAfter) {
-    $(character).animate({ top: amount }, speed, function () {
+    $(character).animate({ top: amount }, speed, function() {
       position = positionAfter;
-      $(".direct").fadeIn(); 
     });
   }
 
   function alterX(amount, speed, positionAfter) {
-    $(character).animate({ left: amount }, speed, function () {
+    $(character).animate({ left: amount }, speed, function() {
       position = positionAfter;
-      $(".direct").fadeIn();
     });
   }
-
+ 
 
   position = 1;
 
   //loadUp, loadDown, loadLeft, and loadRight are all functions that provide controls for the game;
   function loadUp() {
-    $("body").on("click", "#up", function () {
+    $("body").on("click", "#up", function() {
       if (position === 1) {
-
+       
         alterY("580px", 200, 2);
         alterButton("left", "visible", "Inspect");
         alterButton("down", "visible", "down");
@@ -125,13 +119,13 @@ $(document).ready(function () {
       }
       if (position === 2) {
         empty();
-
+  
         alterY("510px", 200, 3);
         alterButton("left", "hidden", "left");
         alterButton("right", "visible", "right");
       }
       if (position === 3) {
-
+       
         alterY("400px", 200, 4);
         alterButton("up", "visible", "Inspect");
         alterButton("right", "hidden", "right");
@@ -139,9 +133,9 @@ $(document).ready(function () {
       }
       if (position === 4) {
         type(textAltar, "altarButton");
-
-
-
+        
+       
+   
       }
       if (position === 5) {
         alterY("260px", 200, 7);
@@ -177,18 +171,18 @@ $(document).ready(function () {
       }
       if (position === 14) {
 
-
+      
         type(textBoss, "boss");
-
+     
       }
     });
   }
   function loadLeft() {
-    $("body").on("click", "#left", function () {
+    $("body").on("click", "#left", function() {
       if (position === 2) {
         type(textNook, "start");
 
-
+       
       }
       if (position === 5) {
         alterX("67px", 200, 3);
@@ -235,7 +229,7 @@ $(document).ready(function () {
     });
   }
   function loadRight() {
-    $("body").on("click", "#right", function () {
+    $("body").on("click", "#right", function() {
       if (position === 3) {
         alterX("295px", 200, 5);
         alterButton("up", "visible", "up");
@@ -283,15 +277,15 @@ $(document).ready(function () {
       }
       if (position === 14) {
         renderBattle();
-
-
+        
+  
       }
     });
   }
   function loadDown() {
-    $("body").on("click", "#down", function () {
+    $("body").on("click", "#down", function() {
       if (position === 2) {
-
+        
         empty();
         alterY("800px", 200, 1);
         alterButton("down", "hidden", "down");
@@ -301,8 +295,8 @@ $(document).ready(function () {
         alterY("580px", 200, 2);
         alterButton("right", "hidden", "right");
         alterButton("up", "visible", "up");
-        alterButton("left", "visible", "Inspect");
-
+        alterButton("left","visible","Inspect");
+        
       }
       if (position === 4) {
         empty();
@@ -337,73 +331,31 @@ $(document).ready(function () {
       }
     });
   }
-  var opened = false
-  var altarTaken = false;
-  var bookRead = false;
-  var statueUsed = false;
-  $("#open").on("click", function () {
-    if (!opened) {
-      empty();
-      type(textSurprise, "start");
-      opened = true
-  
-    } else if (opened) {
-      empty();
-      type(chestTaken);
-    }
-    $(".direct").fadeIn();
-  
+  $("#open").on("click", function() {
+    empty();
+    type(textSurprise, "start");
+
   });
   $()
-  $("#altarButton").on("click", function () {
-    if (!altarTaken) {
-      empty();
-      type(touchAltar);
-      altarTaken = true;
-
-    } else if (altarTaken) {
-      empty();
-      type(statueTouched);
-    }
-    $(".direct").fadeIn();
- 
-
+  $("#altarButton").on("click", function() {
+    empty();
+    type(touchAltar);
+    
 
   })
-  $("#books").on("click", function () {
-    if (!bookRead) {
-      empty();
-      type(touchBookcase);
-      bookRead = true;
-    } else if (bookRead) {
-      empty();
-      type(bookTaken);
-
-    }
-    $(".direct").fadeIn();
+  $("#books").on("click", function() {
+    empty();
+    type(touchBookcase);
+    empty();
   })
-  $("#statue").on("click", function () {
-    if (!statueUsed) {
-      empty();
-      type(touchStatue);
-      statueUsed = true;
-
-    } else if (statueUsed) {
-      empty();
-      type(statueTouched)
-    }
-    $(".direct").fadeIn();
-
-
+  $("#statue").on("click", function() {
+    empty();
+    type(touchStatue);
   })
-
-
-
-
-
   ///loads the directional inputs
   loadUp();
   loadLeft();
   loadRight();
   loadDown();
 });
+
