@@ -38,10 +38,6 @@ $(document).ready(function() {
         }
         console.log("there was an error")
         return;
-      },
-      unsuccessful: function(){
-        $(".warning").css("display", "none");
-        document.querySelector(".warning").style.display = "block";
       }
     });
   });
@@ -51,7 +47,7 @@ $(document).ready(function() {
   });
 });
 
-function warning(){
+function warning() {
   $(".warning").css("display", "none");
   document.querySelector(".warning").style.display = "block";
-};
+}
