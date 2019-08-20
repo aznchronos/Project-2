@@ -1,17 +1,40 @@
+
+
+
 $(document).ready(function() {
-  console.log("This is the localstorage of ID ", window.localStorage.getItem('ID'));
-  console.log("This is the localstorage of Name ", window.localStorage.getItem('Name'));
+
+
+  //grabs character div
   var character = $("#characterAnimation");
+
+  //variables that hold text for possible events
   let textNook = "You peek down the hall peering into the darkness and run headfirst into a hulking monster!";
   let textAltar = "You enter a circular room with nothing inside except an altar with a red skull!"; 
+  let touchAltar = "Your rage grows..."
   let textBookcase = "You enter a room and see a shelf full of books with a variety of colors. A particular black book grabs your eye!";
+  let touchBookcase = "From what you can discern this book might prove useful against a certian blue fire!";
   let textChest = "You round the corner and find yourself in front of an unlocked chest seemingly overflowing with treasure!";
   let textStatue = "You enter a rectangular room with a large looming grey statue reseumbling a gargoyle!";
+  let touchStatue = "You feel refreshed!";
   let textNothing = "Nothing interesting here!";
   let textSurprise = "You plunge into the chest grabbing all you can see but don't see something creeping behind you...";
-  let textTrapDoor = "You see a wooden board on the floor you think you might be able to move it";
+  let textTrapDoor = "You see a wooden board on the floor you think you might be able to move it!";
+
+  let textBoss = "This room has a feeling of finality...";
+
   let i = 0;
 
+  //if we wanted to implement not being able to farm enemies
+  let firstBattle = false;
+  let secondBattle = false;
+  let thirdBattle = false;
+  let bossBattle =false;
+
+  //when the battle is over return to map
+  $("body").on("click", ".return", function() {
+    $("#endBattle").fadeOut(1000);
+  })
+  //function that creates the typewriter effect and fades in a respective button
   function type(text, button) {
     console.log("typewriter loading")
     $("#textBox").fadeIn();
@@ -25,11 +48,11 @@ $(document).ready(function() {
       }, 20);
     }
   }
-
+  //clears out textbox
   function empty() {
     i = 0;
     $("#text").empty();
-    $("#textBox").fadeOut(500);
+    $("#textBox").css("display", "none");
     $(".actions").fadeOut(500);
   }
   function renderBattle(){
@@ -39,7 +62,12 @@ $(document).ready(function() {
   
   $("body").on("click", "#start", function() {
     renderBattle();
+    $("#start").css("display", "none");
+    empty();
   });
+  $("body").on("click", "#boss", function() {
+    renderBattle();
+  })
 
  
 
@@ -113,7 +141,8 @@ $(document).ready(function() {
         alterY("260px", 200, 7);
       }
       if (position === 6) {
-        type(textStatue);
+        type(textStatue, "statue");
+
       }
       if (position === 7) {
         alterY("110px", 200, 9);
@@ -140,12 +169,19 @@ $(document).ready(function() {
       if (position === 13) {
         type(textTrapDoor, "trapdoor");
       }
+      if (position === 14) {
+
+      
+        type(textBoss, "boss");
+     
+      }
     });
   }
   function loadLeft() {
     $("body").on("click", "#left", function() {
       if (position === 2) {
         type(textNook, "start");
+
        
       }
       if (position === 5) {
@@ -188,6 +224,7 @@ $(document).ready(function() {
         alterButton("down", "visible", "down");
         alterButton("right", "visible", "right");
         alterButton("left", "hidden", "left");
+        empty();
       }
     });
   }
@@ -238,6 +275,11 @@ $(document).ready(function() {
         alterButton("up", "visible", "Inspect");
         alterButton("down", "hidden", "down");
       }
+      if (position === 14) {
+        renderBattle();
+        
+  
+      }
     });
   }
   function loadDown() {
@@ -280,7 +322,7 @@ $(document).ready(function() {
         type(textNothing);
       }
       if (position === 12) {
-        alterButton("up", "hidden", "up");
+        alterButton("up", "visible", "Inspect");
         alterButton("right", "hidden", "right");
         alterButton("down", "hidden", "down");
         alterY("935px", 1000, 14);
@@ -293,6 +335,22 @@ $(document).ready(function() {
     empty();
     type(textSurprise, "start");
 
+  });
+  $()
+  $("#altarButton").on("click", function() {
+    empty();
+    type(touchAltar);
+    
+
+  })
+  $("#books").on("click", function() {
+    empty();
+    type(touchBookcase);
+    empty();
+  })
+  $("#statue").on("click", function() {
+    empty();
+    type(touchStatue);
   })
   ///loads the directional inputs
   loadUp();

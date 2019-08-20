@@ -9,38 +9,25 @@ $(document).ready(function() {
     var newPass = $("#newPass")
       .val()
       .trim();
-    var newChar = $("#newChar")
-      .val()
-      .trim();
 
     var newUser = {
       name: newUsername,
-      pass: newPass,
-      char: newChar
+      pass: newPass
     };
-
     //conditionals to check if user and pass have required lengths
-    // If everything fulfills the conditions
     if (
-      newUser.name.length >= 5 &&
-      newUser.name.length <= 15 &&
-      newUser.pass.length >= 5 &&
-      newUser.char.length >= 5 &&
-      newUser.char.length <= 15
+      newUsername.length >= 5 &&
+      newUsername.length <= 20 &&
+      newPass.length >= 1
     ) {
-      newAccount(newUser);
-    } else {
-      removeWarnings();
-      requirementChecker(newUser);
+      $.ajax({
+        method: "POST",
+        url: "/newUser",
+        data: newUser
+      });
     }
-  });
-});
 
-function newAccount(newUser) {
-  $.ajax({
-    method: "POST",
-    url: "/newUser",
-    data: newUser
+    window.location.href = "/";
   });
   window.location.href = "/";
 }
