@@ -6,6 +6,7 @@ function openDoor() {
       $("body").fadeOut(3500, function() {
         window.location.href= "/map";
       });
+      
     });
 }
 $("#go").on("click", function() {
