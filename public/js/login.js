@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
   $("#submit").on("click", function() {
     //creates the body object "user" and sends post request
     var username = $("#user")
@@ -12,24 +13,39 @@ $(document).ready(function() {
       name: username,
       pass: password
     };
-    $("#user").val("");
-    $("#pass").val("");
     $.ajax({
       method: "POST",
       url: "/auth",
-      data: user
-    }).then(function(data) {
-      console.log(data);
-      //checks if data came back and if so does a redirect (currently redirecting to the create route)
-      if (data !== null) {
-        window.location.href = "/character";
-      } else {
-        console.log("invalid login credentials");
+      data: user,
+      error: function(xhr, ajaxOptions, thrownError) {
+        console.log('There was an error', xhr.responseText);
+      },
+      success: function(data) {
+        console.log("This is the data from login.js " + data);
+        //checks if data came back and if so does a redirect (currently redirecting to the create route)
+        if (data !== null) {
+          $("#user").val("");
+          $("#pass").val("");
+          console.log(data);
+          // console.log("This is the data.id for login.js " + data.ID);
+          // console.log("This is the data.characterName for login.js " + data.characterName);
+          window.location.href = "/character";
+          return;
+        } else {
+          warning();
+        }
+        console.log("there was an error")
+        return;
       }
-    });
+    })
   });
   //redirects to create an account page
   $("#create").on("click", function() {
     window.location.href = "/create";
   });
 });
+
+function warning(){
+  $(".warning").css("display", "none");
+  document.querySelector(".warning").style.display = "block";
+}
