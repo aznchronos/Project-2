@@ -618,10 +618,16 @@ $("#attackCommand").on("click", function(){
         
 
         if(enemyOBJ.name =="Minotaur"){
-            minAnimation = 0;
-            setTimeout(minInit, 1000);
-            setTimeout(takeDamage, 1000);
-            
+            if (enemyOBJ.health > 0){
+                minAnimation = 0;
+                setTimeout(minInit, 1000);
+                setTimeout(takeDamage, 1000);
+                
+
+            } else {
+                
+            }
+           
             
 
         }
@@ -638,13 +644,15 @@ $("#attackCommand").on("click", function(){
     else{
         if(enemyOBJ.name =="Minotaur"){
             minAnimation = 0;
-            minInit();
+            if (enemyOBJ.health > 0) {
+                minInit();
+            } 
+            
 
         }
         else{
             demonAnimation = 0;
             demonInit();
-
         }
         adAnimation = 0;
         setTimeout(init, 1000);
