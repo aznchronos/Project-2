@@ -60,11 +60,22 @@
     top: 570px;
     font-size: 35px;
     font-weight: 700;
-    display: none;
+    
 }
-#start{
+.actions{
     width: 200px;
     height: 75px;
+    display: none;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(83, 83, 83);
+    color: white;
+}
+.actions:hover{
+    background-color: grey;
 }
 #stats{
     position: fixed;
@@ -163,10 +174,7 @@
 }
 
 .container{
-    display: none;
+
   
    
-}
-.progress-bar{
-    width: 50%;
 }

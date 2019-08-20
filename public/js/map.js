@@ -4,17 +4,19 @@ $(document).ready(function() {
   var character = $("#characterAnimation");
   let textNook = "You peek down the hall peering into the darkness and run headfirst into a hulking monster!";
   let textAltar = "You enter a circular room with nothing inside except an altar with a red skull!"; 
-  let textBookcase = "As you enter the room you see a shelf full of books of a variety of colors!";
-  let textChest = "You round the corner and find yourself in front of an unlocked chest seemingly overflowing with treasure!"
-  let textStatue = "You enter a rectangular room with a large looming grey statue reseumbling a gargoyle!"
-  let textNothing = "Nothing interesting here!"
+  let textBookcase = "You enter a room and see a shelf full of books with a variety of colors. A particular black book grabs your eye!";
+  let textChest = "You round the corner and find yourself in front of an unlocked chest seemingly overflowing with treasure!";
+  let textStatue = "You enter a rectangular room with a large looming grey statue reseumbling a gargoyle!";
+  let textNothing = "Nothing interesting here!";
+  let textSurprise = "You plunge into the chest grabbing all you can see but don't see something creeping behind you...";
+  let textTrapDoor = "You see a wooden board on the floor you think you might be able to move it";
   let i = 0;
 
 
-  function type(text) {
+  function type(text, button) {
     console.log("typewriter loading")
     $("#textBox").fadeIn();
-    $("#buttonDiv").fadeIn()
+    $("#" + button).fadeIn();
     
     if (i < text.length) {
       $("#text").append(text.charAt(i));
@@ -29,6 +31,7 @@ $(document).ready(function() {
     i = 0;
     $("#text").empty();
     $("#textBox").fadeOut(500);
+    $(".actions").fadeOut(500);
   }
   function renderBattle(){
     $(".container").css("display", "none");
@@ -102,7 +105,7 @@ $(document).ready(function() {
         alterButton("down", "visible", "down");
       }
       if (position === 4) {
-        type(textAltar);
+        type(textAltar, "altarButton");
         
        
    
@@ -135,12 +138,15 @@ $(document).ready(function() {
         alterButton("down", "visible", "down");
         alterY("495px", 200, 5);
       }
+      if (position === 13) {
+        type(textTrapDoor, "trapdoor");
+      }
     });
   }
   function loadLeft() {
     $("body").on("click", "#left", function() {
       if (position === 2) {
-        type(textNook);
+        type(textNook, "start");
        
       }
       if (position === 5) {
@@ -170,12 +176,12 @@ $(document).ready(function() {
         alterButton("right", "visible", "right");
       }
       if (position === 10) {
-        type(textBookcase);
+        type(textBookcase, "books");
 
       }
 
       if (position === 11) {
-        type(textChest);
+        type(textChest, "open");
       }
       if (position === 13) {
         alterX("295px", 200, 12);
@@ -284,6 +290,11 @@ $(document).ready(function() {
       }
     });
   }
+  $("#open").on("click", function() {
+    empty();
+    type(textSurprise, "start");
+
+  })
   ///loads the directional inputs
   loadUp();
   loadLeft();
