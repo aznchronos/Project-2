@@ -109,4 +109,4 @@ function requirementChecker(newUser) {
 
 function removeWarnings(){
   $(".warning, .warning2, .warning3").css("display", "none");
-}
+};

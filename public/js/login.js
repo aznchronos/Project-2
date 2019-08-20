@@ -29,6 +29,8 @@ $(document).ready(function() {
           console.log(data);
           // console.log("This is the data.id for login.js " + data.ID);
           // console.log("This is the data.characterName for login.js " + data.characterName);
+          window.localStorage.setItem("ID", data.ID);
+          window.localStorage.setItem("CharacterName", data.characterName);
           window.location.href = "/character";
           return;
         } else {
@@ -41,7 +43,7 @@ $(document).ready(function() {
         $(".warning").css("display", "none");
         document.querySelector(".warning").style.display = "block";
       }
-    })
+    });
   });
   //redirects to create an account page
   $("#create").on("click", function() {
@@ -52,4 +54,4 @@ $(document).ready(function() {
 function warning(){
   $(".warning").css("display", "none");
   document.querySelector(".warning").style.display = "block";
-}
+};
