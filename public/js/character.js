@@ -16,7 +16,7 @@ $("#go").on("click", function() {
     type =0;
     setTimeout(openDoor, 1000);   
   });
-});
+})
 
 var idleFrames = [0, 1, 2, 3];
 var type = 0;
@@ -40,7 +40,7 @@ const scaledHeight = height * scale;
 
 function init() {
   window.requestAnimationFrame(step);
-};
+}
 
 let cycleLoop = [0,1,2,3];
 let currentLoopIndex = 0;
@@ -62,7 +62,7 @@ function step() {
     currentLoopIndex = 0;
   }
   window.requestAnimationFrame(step);
-};
+}
 
 
 function drawFrame(frameX, frameY, canvasX, canvasY) {

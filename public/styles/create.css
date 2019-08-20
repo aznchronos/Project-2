@@ -4,105 +4,87 @@
        url('/fonts/breathe_fire-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+
 }
+
 
 body{
   background-image: url("../images/dark-honeycomb.png");
   font-family: "breathe_fireregular";
-  font-weight: 700;  
-}
+  font-weight: 700;
 
-#loginDiv{
-  width: 90%;
-  margin: auto;
-  text-align: center;
-  height: 700px;
-  background-image: url("../images/castle.gif");
-  background-size: cover;
-  border : 10px solid black;
-}
 
-.torchgif{
-  width: 100px;
-  height: 150px;
-}
-
-#torch-right{
-  float:right;    
-}
-#torch-left{
-  float: left;
-}
-
-#name{
-  color: white;
-  margin-top: 40px;
-  font-size: 70px;
-  z-index: 1000;
-  text-decoration: underline;
-}
-
-#submitDiv{
-  margin-top: 20px;
-}
   
-#textinput{
-  text-align: right;
-  float: left;
 }
 
-input {
-  width : 90%;
-  font-size: 25px;
-}
+  #loginDiv{
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    height: 700px;
+    background-image: url("../images/castle.gif");
+    background-size: cover;
 
-input:focus{
-  outline: none;
-}
+    border : 10px solid black;
+  }
+  .torchgif{
+    width: 100px;
+    height: 150px;
+  }
+  #torch-right{
+    float:right;    
+  }
+  #torch-left{
+    float: left;
+  }
+
+  #name{
+    color: white;
+    margin-top: 40px;
+    font-size: 70px;
+    z-index: 1000;
+    text-decoration: underline;
+  }
+  #submitDiv{
+    margin-top: 20px;
+  }
   
-button:focus{
-  outline: none;
-}
+  #textinput{
+      text-align: right;
+      float: left;
+  }
+  input {
+      width : 90%;
+      font-size: 30px;
+  }
+  input:focus{
+      outline: none;
+  }
+  
+  button:focus{
+      outline: none;
+  }
+  button:hover{
+      background-color: grey;
+  }
 
-button:hover{
-  background-color: grey;
-}
+  .newUser{
+      margin-top: 50px;
+      color: white;
+  }
 
-.newUser{
-  margin-top: 50px;
-  color: white;
-}
+  #newUserButton{
+      margin-top : 50px;
+      width: 200px;
+      height: 50px;
+      font-size: 24px;
+  }
+  .requirements{
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
 
-#newUserButton{
-  margin-top : 50px;
-  width: 200px;
-  height: 50px;
-  font-size: 24px;
-}
-
-.requirements{
-  color: white;
-  font-size: 20px;
-  font-weight: 800;
-}
-
-.subHeader{
-  font-size: 50px;
-}
-
-.row{
-  margin-top: -15px;
-}
-
-.warning{
-  display: none;
-  color: red;
-}
-.warning2{
-  display: none;
-  color: red;
-}
-.warning3{
-  display: none;
-  color: red;
-}
+  }
+  .subHeader{
+    font-size: 55px;
+  }
