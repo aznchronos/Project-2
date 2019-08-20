@@ -46,12 +46,13 @@ module.exports = function(app) {
                     };
                     //this res.json sends back the user object back to the client side ajax call
                     // res.json(data.dataValues);
-                    res.json(characterInfo);
+                    return res.json(characterInfo);
                     // console.log(characterInfo);
                   });
               });
           } else {
-            console.log("invalid login credentials");
+            console.log("invalid login credentials from apiRoutes");
+            return res.status(401).json({msg: 'unable to find user'})
           }
         });
     }

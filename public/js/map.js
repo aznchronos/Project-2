@@ -1,6 +1,6 @@
-
-
 $(document).ready(function() {
+  console.log("This is the localstorage of ID ", window.localStorage.getItem('ID'));
+  console.log("This is the localstorage of Name ", window.localStorage.getItem('Name'));
   var character = $("#characterAnimation");
   let textNook = "You peek down the hall peering into the darkness and run headfirst into a hulking monster!";
   let textAltar = "You enter a circular room with nothing inside except an altar with a red skull!"; 
@@ -11,7 +11,6 @@ $(document).ready(function() {
   let textSurprise = "You plunge into the chest grabbing all you can see but don't see something creeping behind you...";
   let textTrapDoor = "You see a wooden board on the floor you think you might be able to move it";
   let i = 0;
-
 
   function type(text, button) {
     console.log("typewriter loading")
