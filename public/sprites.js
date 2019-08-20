@@ -1,409 +1,611 @@
+//////////////////////////////////////////////////////////////
+//ADVENTURER ANIMATION
+//////////////////////////////////////////////////////////////
+let adImg = new Image();
+adImg.src = './AdSprite.png';
 
 
 
-$(document).ready(function () {
+let AdventurerCanvas = document.getElementById("adventurerAnimationID");
+let adCtx = AdventurerCanvas.getContext('2d');
 
-  //grabs character div
-  var character = $("#characterAnimation");
-  //variables that hold text for possible events
-  let textNook = "You peek down the hall peering into the darkness and run headfirst into a hulking monster!";
-  let textAltar = "You enter a circular room with nothing inside except an altar with a red skull!";
-  let touchAltar = "Your rage grows..."
-  let textBookcase = "You enter a room and see a shelf full of books with a variety of colors. A particular black book grabs your eye!";
-  let touchBookcase = "From what you can discern this book might prove useful against a certian blue fire!";
-  let textChest = "You round the corner and find yourself in front of an unlocked chest seemingly overflowing with treasure!";
-  let textStatue = "You enter a rectangular room with a large looming grey statue reseumbling a gargoyle!";
-  let touchStatue = "You feel refreshed!";
-  let textNothing = "Nothing interesting here!";
-  let textSurprise = "You plunge into the chest grabbing all you can see but don't see something creeping behind you...";
-  let textTrapDoor = "You see a wooden board on the floor you think you might be able to move it!";
-  let chestTaken = "The treasure have been emptied...";
-  let bookTaken = "You've learned all you can from this book...";
-  let statueTouched = "Nothing happens...";
-  
-  
-  let textBoss = "This room has a feeling of finality...";
-  
-
-  let i = 0;
-  //if we wanted to implement not being able to farm enemies
-  let firstBattle = false;
-  let secondBattle = false;
-  let thirdBattle = false;
-  let bossBattle = false;
-  $("body").on("click", ".direct", function () {
-    $(".direct").css("display", "none");
-  });
-  //when the battle is over return to map
-  $("body").on("click", ".return", function () {
-    $("#endBattle").fadeOut(1000);
-  })
-  //function that creates the typewriter effect and fades in a respective button
-  function type(text, button) {
-    console.log("typewriter loading")
-    $("#textBox").fadeIn();
-    $("#" + button).fadeIn();
-
-    if (i < text.length) {
-      $("#text").append(text.charAt(i));
-      i++;
-      setTimeout(function () {
-        type(text);
-      }, 5);
-    }
-  }
-  //clears out textbox
-  function empty() {
-    i = 0;
-    $("#text").empty();
-    $("#textBox").css("display", "none");
-    $(".actions").fadeOut(500);
-  }
-  function renderBattle() {
-    $(".container").css("display", "none");
-    $("#renderBattle").fadeIn(2000);
-  }
-
-  $("body").on("click", "#start", function () {
-    renderBattle();
-    $("#start").css("display", "none");
-    empty();
-  });
-  $("body").on("click", "#boss", function () {
-    renderBattle();
-  })
+//Scale will be 3 for normal gameplay and 5 for title screen
+const adScale = 3;
+const adWidth = 50;
+const adHeight = 37;
+const adScaledWidth = adWidth*adScale;
+const adScaledHeight = adHeight*adScale;
+var adAnimation;
+var myAdAnimation = null;
 
 
-
-  //character element from html
-
-  //object of possible encoutners within the map called later in the position functions
-  var possibleEncounter = {
-    getItem: function () {
-      console.log("You got an Item!");
-    },
-    statBoost: function () {
-      console.log("You got a stat boost!");
-    },
-    enounter: function () {
-      console.log("Enemy encounter!");
-    }
-  };
-  //functions that either alter the visibility of the buttons or the x and y.
-  function alterButton(button, swap, action) {
-    $("#" + button).css("visibility", swap);
-    $("#" + button).html(action);
-  }
-
-  function alterY(amount, speed, positionAfter) {
-    $(character).animate({ top: amount }, speed, function () {
-      position = positionAfter;
-      $(".direct").fadeIn(); 
-    });
-  }
-
-  function alterX(amount, speed, positionAfter) {
-    $(character).animate({ left: amount }, speed, function () {
-      position = positionAfter;
-      $(".direct").fadeIn();
-    });
-  }
-
-
-  position = 1;
-
-  //loadUp, loadDown, loadLeft, and loadRight are all functions that provide controls for the game;
-  function loadUp() {
-    $("body").on("click", "#up", function () {
-      if (position === 1) {
-
-        alterY("580px", 200, 2);
-        alterButton("left", "visible", "Inspect");
-        alterButton("down", "visible", "down");
-
-
-      }
-      if (position === 2) {
-        empty();
-
-        alterY("510px", 200, 3);
-        alterButton("left", "hidden", "left");
-        alterButton("right", "visible", "right");
-      }
-      if (position === 3) {
-
-        alterY("400px", 200, 4);
-        alterButton("up", "visible", "Inspect");
-        alterButton("right", "hidden", "right");
-        alterButton("down", "visible", "down");
-      }
-      if (position === 4) {
-        type(textAltar, "altarButton");
-
-
-
-      }
-      if (position === 5) {
-        alterY("260px", 200, 7);
-      }
-      if (position === 6) {
-        type(textStatue, "statue");
-
-      }
-      if (position === 7) {
-        alterY("110px", 200, 9);
-        alterButton("right", "hidden", "right");
-        alterButton("up", "hidden", "up");
-      }
-      if (position === 11) {
-        alterButton("right", "visible", "right");
-        alterButton("left", "visible", "left");
-        alterButton("down", "visible", "down");
-        alterY("55px", 500, 7);
-        alterX("705px", 500, 7);
-        $(character).animate({ left: "-=60px", top: "+=75px" }, 500);
-        alterY("207px", 500, 7);
-        alterX("490px", 500, 7);
-        alterY("260px", 500, 7);
-        alterX("295px", 500, 7);
-      }
-      if (position === 12) {
-        alterButton("left", "visible", "left");
-        alterButton("down", "visible", "down");
-        alterY("495px", 200, 5);
-      }
-      if (position === 13) {
-        type(textTrapDoor, "trapdoor");
-      }
-      if (position === 14) {
-
-
-        type(textBoss, "boss");
-
-      }
-    });
-  }
-  function loadLeft() {
-    $("body").on("click", "#left", function () {
-      if (position === 2) {
-        type(textNook, "start");
-
-
-      }
-      if (position === 5) {
-        alterX("67px", 200, 3);
-        alterButton("left", "hidden", "left");
-      }
-      if (position === 6) {
-        empty();
-        alterX("295px", 200, 5);
-        alterButton("up", "visible", "up");
-        alterButton("left", "visible", "left");
-        alterButton("right", "visible", "right");
-
-        alterButton("down", "visible", "down");
-      }
-      if (position === 7) {
-        alterX("135px", 200, 8);
-        alterButton("up", "hidden", "up");
-        alterButton("left", "visible", "Inspect");
-        alterButton("down", "hidden", "down");
-        alterButton("right", "visible", "right");
-      }
-      if (position === 9) {
-        alterX("80px", 200, 10);
-        alterButton("left", "visible", "Inspect");
-        alterButton("down", "hidden", "down");
-        alterButton("right", "visible", "right");
-      }
-      if (position === 10) {
-        type(textBookcase, "books");
-
-      }
-
-      if (position === 11) {
-        type(textChest, "open");
-      }
-      if (position === 13) {
-        alterX("295px", 200, 12);
-        alterButton("up", "visible", "up");
-        alterButton("down", "visible", "down");
-        alterButton("right", "visible", "right");
-        alterButton("left", "hidden", "left");
-        empty();
-      }
-    });
-  }
-  function loadRight() {
-    $("body").on("click", "#right", function () {
-      if (position === 3) {
-        alterX("295px", 200, 5);
-        alterButton("up", "visible", "up");
-        alterButton("down", "visible", "down");
-        alterButton("left", "visible", "left");
-      }
-      if (position === 5) {
-        alterX("630px", 200, 6);
-        alterButton("up", "visible", "Inspect");
-        alterButton("left", "visible", "left");
-        alterButton("right", "hidden", "right");
-        alterButton("down", "hidden", "down");
-      }
-      if (position === 7) {
-        alterButton("right", "hidden", "right");
-        alterButton("left", "visible", "Inspect");
-        alterButton("down", "visible", "Inspect");
-        alterX("490px", 500, 11);
-        alterY("207px", 500, 11);
-        alterX("645px", 500, 11);
-        alterY("120px", 500, 11);
-        $(character).animate({ left: "+=70px", top: "-=65px" }, 500);
-        alterX("817px", 500, 11);
-        alterY("260px", 500, 11);
-      }
-      if (position === 8) {
-        alterX("295px", 200, 7);
-        alterButton("up", "visible", "up");
-        alterButton("left", "visible", "left");
-        alterButton("down", "visible", "down");
-      }
-      if (position === 10) {
-        empty();
-        alterX("295px", 200, 9);
-        alterButton("left", "visible", "left");
-        alterButton("right", "hidden", "right");
-        alterButton("down", "visible", "down");
-      }
-      if (position === 12) {
-        alterX("450px", 200, 13);
-        alterButton("right", "hidden", "right");
-        alterButton("left", "visible", "left");
-        alterButton("up", "visible", "Inspect");
-        alterButton("down", "hidden", "down");
-      }
-      if (position === 14) {
-        renderBattle();
-
-
-      }
-    });
-  }
-  function loadDown() {
-    $("body").on("click", "#down", function () {
-      if (position === 2) {
-
-        empty();
-        alterY("800px", 200, 1);
-        alterButton("down", "hidden", "down");
-        alterButton("left", "hidden", "left");
-      }
-      if (position === 3) {
-        alterY("580px", 200, 2);
-        alterButton("right", "hidden", "right");
-        alterButton("up", "visible", "up");
-        alterButton("left", "visible", "Inspect");
-
-      }
-      if (position === 4) {
-        empty();
-        alterY("510px", 200, 3);
-        alterButton("up", "visible", "up");
-        alterButton("right", "visible", "right");
-      }
-      if (position === 5) {
-        empty();
-        alterY("785px", 200, 12);
-        alterButton("left", "hidden", "left");
-        alterButton("down", "visible", "Ready?");
-      }
-      if (position === 7) {
-        alterY("510px", 200, 5);
-      }
-      if (position === 9) {
-        alterY("260px", 200, 7);
-        alterButton("up", "visible", "up");
-        alterButton("right", "visible", "right");
-      }
-      if (position === 11) {
-        type(textNothing);
-      }
-      if (position === 12) {
-        alterButton("up", "visible", "Inspect");
-        alterButton("right", "hidden", "right");
-        alterButton("down", "hidden", "down");
-        alterY("935px", 1000, 14);
-        alterX("817px", 1000, 14);
-        alterY("495px", 1000, 14);
-      }
-    });
-  }
-  var opened = false
-  var altarTaken = false;
-  var bookRead = false;
-  var statueUsed = false;
-  $("#open").on("click", function () {
-    if (!opened) {
-      empty();
-      type(textSurprise, "start");
-      opened = true
-  
-    } else if (opened) {
-      empty();
-      type(chestTaken);
-    }
-    $(".direct").fadeIn();
-  
-  });
-  $()
-  $("#altarButton").on("click", function () {
-    if (!altarTaken) {
-      empty();
-      type(touchAltar);
-      altarTaken = true;
-
-    } else if (altarTaken) {
-      empty();
-      type(statueTouched);
-    }
-    $(".direct").fadeIn();
- 
-
-
-  })
-  $("#books").on("click", function () {
-    if (!bookRead) {
-      empty();
-      type(touchBookcase);
-      bookRead = true;
-    } else if (bookRead) {
-      empty();
-      type(bookTaken);
-
-    }
-    $(".direct").fadeIn();
-  })
-  $("#statue").on("click", function () {
-    if (!statueUsed) {
-      empty();
-      type(touchStatue);
-      statueUsed = true;
-
-    } else if (statueUsed) {
-      empty();
-      type(statueTouched)
-    }
-    $(".direct").fadeIn();
-
-
-  })
-
-
-
-
-
-  ///loads the directional inputs
-  loadUp();
-  loadLeft();
-  loadRight();
-  loadDown();
+$("#death").on("click", function(){
+  adAnimation = 1;
+  init()
 });
+
+$("#idle").on("click", function(){
+  adAnimation = null;
+  init()
+});
+
+$("#attack").on("click", function(){
+  adAnimation = 0;
+  init()
+});
+
+$("#running").on("click", function(){
+  adAnimation = 2;
+  init()
+});
+
+
+function init() {
+  adFrameCount = 6;
+  window.cancelAnimationFrame(myAdAnimation);
+  adCtx.clearRect(0, 0, AdventurerCanvas.width, AdventurerCanvas.height);
+  switch(adAnimation) {
+      case 0:
+          myAdAnimation = window.requestAnimationFrame(stepAdAttack);
+        break;
+      case 1:
+          myAdAnimation = window.requestAnimationFrame(stepAdDeath);
+        break;
+        case 2:
+            myAdAnimation = window.requestAnimationFrame(stepAdRunning);
+          break;
+      default:
+          myAdAnimation = window.requestAnimationFrame(stepAdIdle);
+    }
+  }
+
+//Frames for animations
+const adCycleLoopRunning = [1,2,3,4,5,6]
+const adCycleLoopAttack = [0,1,2,3,4,5,6,7];
+const adCycleLoopIdle = [0,1,2,3];
+const adCycleLoopDeath = [2,3,4,5,5,5,5,5,5,5];
+//Looping Indexes
+let adCurrentLoopIndexR = 0;
+let adCurrentLoopIndexA = 0;
+let adCurrentLoopIndexI = 0;
+let adCurrentLoopIndexD = 0;
+
+let adCrameCount = 6;
+
+
+function stepAdDeath(){
+
+    adFrameCount++;
+    if (adFrameCount < 6) {
+      myAdAnimation = window.requestAnimationFrame(stepAdDeath);
+      return;
+    }
+    adFrameCount = 0;
+    adCtx.clearRect(0, 0, AdventurerCanvas.width, AdventurerCanvas.height);
+    drawFrame(adCycleLoopDeath[adCurrentLoopIndexD], 9, 0, 0);
+    adCurrentLoopIndexD++;
+    if (adCurrentLoopIndexD >= adCycleLoopDeath.length) {
+      adCurrentLoopIndexD = 0;
+    }
+    myAdAnimation = window.requestAnimationFrame(stepAdDeath);
+}
+
+
+
+
+function stepAdIdle(){
+
+  adFrameCount++;
+  if (adFrameCount < 10) {
+    myAdAnimation = window.requestAnimationFrame(stepAdIdle);
+    return;
+  }
+  adFrameCount = 0;
+  adCtx.clearRect(0, 0, AdventurerCanvas.width, AdventurerCanvas.height);
+  drawFrame(adCycleLoopIdle[adCurrentLoopIndexI], 0, 0, 0);
+  adCurrentLoopIndexI++;
+  if (adCurrentLoopIndexI >= adCycleLoopIdle.length) {
+    adCurrentLoopIndexI = 0;
+  }
+  myAdAnimation = window.requestAnimationFrame(stepAdIdle);
+}
+
+
+
+
+function stepAdRunning(){
+
+  adFrameCount++;
+  if (adFrameCount < 6) {
+    myAdAnimation = window.requestAnimationFrame(stepAdRunning);
+    return;
+  }
+  adFrameCount = 0;
+  adCtx.clearRect(0, 0, AdventurerCanvas.width, AdventurerCanvas.height);
+  drawFrame(adCycleLoopRunning[adCurrentLoopIndexR], 1, 0, 0);
+  adCurrentLoopIndexR++;
+  if (adCurrentLoopIndexR >= adCycleLoopRunning.length) {
+    adCurrentLoopIndexR = 0;
+  }
+  myAdAnimation = window.requestAnimationFrame(stepAdRunning);
+}
+
+
+
+
+function stepAdAttack(){
+
+  adFrameCount++;
+  if (adFrameCount < 6) {
+    myAdAnimation = window.requestAnimationFrame(stepAdAttack);
+    return;
+  }
+  adFrameCount = 0;
+  adCtx.clearRect(0, 0, AdventurerCanvas.width, AdventurerCanvas.height);
+  drawFrame(adCycleLoopAttack[adCurrentLoopIndexA], 6, 0, 0);
+  adCurrentLoopIndexA++;
+  if (adCurrentLoopIndexA >= adCycleLoopAttack.length) {
+    adCurrentLoopIndexA = 0;
+    adCtx.clearRect(0, 0, AdventurerCanvas.width, AdventurerCanvas.height);
+    window.cancelAnimationFrame(myAdAnimation)
+    myAdAnimation = window.requestAnimationFrame(stepAdIdle);
+    return;
+  }
+  myAdAnimation = window.requestAnimationFrame(stepAdAttack);
+  
+}
+
+
+function drawFrame(frameX, frameY, canvasX, canvasY) {
+    adCtx.drawImage(adImg,
+                  frameX * adWidth, frameY * adHeight, adWidth, adHeight,
+                  canvasX, canvasY, adScaledWidth, adScaledHeight);
+  }
+
+//////////////////////////////////////////////////////////////
+//DEMON ANIMATION
+//////////////////////////////////////////////////////////////
+let demonImg = new Image();
+demonImg.src = "./attack.png"
+
+let demonImg2 = new Image();
+demonImg2.src = "./idle.png"
+
+
+let demonCanvas = document.getElementById('demonAnimationID');
+
+
+let demonCtx = demonCanvas.getContext('2d');
+
+$("#idle").on("click", function(){
+    demonAnimation = null;
+
+    demonInit()
+   
+});
+
+$("#attack").on("click", function(){
+    demonAnimation = 0;
+
+    demonInit()
+   
+});
+//For the first image
+const demonScale = 2.5;
+const demonWidth = 240;
+const demonHeight = 192;
+const demonScaledWidth = demonScale * demonWidth;
+const demonScaledHeight = demonScale * demonHeight;
+
+//For the second image
+const demonScale2 = 2;
+const demonWidth2 = 160;
+const demonHeight2 = 144;
+const demonScaledWidth2 = demonScale2 * demonWidth;
+const demonScaledHeight2 = demonScale2 * demonHeight;
+var demonAnimation = null
+var myDemonAnimation;
+
+
+function demonInit() {
+    demonFrameCount = 6;
+    window.cancelAnimationFrame(myDemonAnimation);
+    demonCtx.clearRect(0, 0, demonCanvas.width, demonCanvas.height);
+    switch(demonAnimation) {
+        case 0:
+            
+            myDemonAnimation = window.requestAnimationFrame(stepDemonAttack);
+          break;
+        default:
+            myDemonAnimation = window.requestAnimationFrame(stepDemonIdle);
+      }
+}
+
+const demonCycleLoopIdle = [0,1,2,3,4,5];
+const demonCycleLoopAttack = [0,1,2,3,4,5,6,7,8,9,10];
+
+let demonCurrentLoopIndexA = 0;
+let demonCurrentLoopIndexI = 0;
+
+
+
+function stepDemonAttack() {
+    //Keeps track of the frame count
+    demonFrameCount++;
+    if (demonFrameCount < 6) {
+        myDemonAnimation = window.requestAnimationFrame(stepDemonAttack);
+        return;
+    }
+
+    demonFrameCount = 0;
+    demonCtx.clearRect(0, 0, demonCanvas.width, demonCanvas.height);
+
+
+    drawFrameAttack(demonCycleLoopAttack[demonCurrentLoopIndexA], 0, 0, 0);
+
+    demonCurrentLoopIndexA++;
+
+
+    //Keeps the loop going for the animation
+    if (demonCurrentLoopIndexA >= demonCycleLoopAttack.length) {
+        demonCurrentLoopIndexA = 0;
+        demonCtx.clearRect(0, 0, demonCanvas.width, demonCanvas.height);
+    window.cancelAnimationFrame(myDemonAnimation)
+    myDemonAnimation = window.requestAnimationFrame(stepDemonIdle);
+    return;
+
+    }
+
+
+
+    myDemonAnimation=  window.requestAnimationFrame(stepDemonAttack);
+}
+function stepDemonIdle() {
+    
+    //Keeps track of the frame count
+    demonFrameCount++;
+    if (demonFrameCount < 6) {
+        myDemonAnimation = window.requestAnimationFrame(stepDemonIdle);
+        return;
+    }
+
+    demonFrameCount = 0;
+    demonCtx.clearRect(0, 0, demonCanvas.width, demonCanvas.height);
+
+    drawFrameIdle(demonCycleLoopIdle[demonCurrentLoopIndexI], 0, 0, 0);
+
+    demonCurrentLoopIndexI++;
+
+
+    //Keeps the loop going for the animation
+    if (demonCurrentLoopIndexI >= demonCycleLoopIdle.length) {
+        demonCurrentLoopIndexI = 0;
+
+    }
+
+
+
+    myDemonAnimation=  window.requestAnimationFrame(stepDemonIdle);
+}
+
+
+function drawFrameIdle(frameX, frameY, canvasX, canvasY) {
+    demonCtx.drawImage(
+        demonImg2,
+        frameX * demonWidth2, frameY * demonHeight2, demonWidth2, demonHeight2,
+        canvasX+100, canvasY+85, demonScaledWidth2, demonScaledHeight2
+    );
+}
+
+function drawFrameAttack(frameX, frameY, canvasX, canvasY) {
+    demonCtx.drawImage(
+        demonImg,
+        frameX * demonWidth, frameY * demonHeight, demonWidth, demonHeight,
+        canvasX, canvasY, demonScaledWidth, demonScaledHeight
+    );
+}
+
+//////////////////////////////////////////////////////////////
+//MINOTAUR ANIMATION
+//////////////////////////////////////////////////////////////
+
+let minImg = new Image();
+minImg.src = "./minotaur.png"
+
+
+let minCanvas = document.getElementById('minotaurAnimationID');
+
+
+let minCtx = minCanvas.getContext('2d');
+
+
+
+$("#death").on("click", function () {
+    minAnimation = 1;
+    minInit()
+});
+
+$("#idle").on("click", function () {
+    minAnimation = null;
+    minInit()
+
+});
+
+$("#attack").on("click", function () {
+    minAnimation = 0;
+    minInit()
+
+});
+
+
+const minScale = 2.5;
+const minWidth = 95;
+const minHeight = 100;
+const minScaledWidth = minScale * minWidth;
+const minScaledHeight = minScale * minHeight;
+var minAnimation = null;
+var myMinAnimation;
+
+
+function minInit() {
+    minFrameCount = 6;
+    window.cancelAnimationFrame(myMinAnimation);
+    minCtx.clearRect(0, 0, minCanvas.width, minCanvas.height);
+    switch (minAnimation) {
+        case 0:
+            myMinAnimation = window.requestAnimationFrame(stepMinAttack);
+            break;
+        case 1:
+            myMinAnimation = window.requestAnimationFrame(stepMinDying);
+            break;
+        default:
+            myMinAnimation = window.requestAnimationFrame(stepMinIdle);
+    }
+
+
+
+
+}
+// Looping frames
+const minCycleLoopIdle = [0, 1, 2, 3, 4, 3, 2, 1, 0];
+const minCycleLoopAttack = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const minCycleLoopDeath = [0, 1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4];
+//Looping Indexes
+let minCurrentLoopIndexI = 0;
+let minCurrentLoopIndexA = 0;
+let minCurrentLoopIndexD = 0;
+
+var minFrameCount = 6;
+
+
+//Animation function that is recursive for idle
+function stepMinIdle() {
+
+    //Keeps track of the frame count
+    minFrameCount++;
+    if (minFrameCount < 6) {
+        myMinAnimation = window.requestAnimationFrame(stepMinIdle);
+        return;
+    }
+
+    minFrameCount = 0;
+    minCtx.clearRect(0, 0, minCanvas.width, minCanvas.height);
+
+    minDrawFrameIdle(minCycleLoopIdle[minCurrentLoopIndexI], 0, 0, 0);
+
+    minCurrentLoopIndexI++;
+
+
+    //Keeps the loop going for the animation
+    if (minCurrentLoopIndexI >= minCycleLoopIdle.length) {
+        minCurrentLoopIndexI = 0;
+
+    }
+
+
+
+    myMinAnimation = window.requestAnimationFrame(stepMinIdle);
+}
+
+//Animation function that is recursive for Attack
+function stepMinAttack() {
+    //Keeps track of the frame count
+    minFrameCount++;
+    if (minFrameCount < 6) {
+        myMinAnimation = window.requestAnimationFrame(stepMinAttack);
+        return;
+    }
+
+    minFrameCount = 0;
+    minCtx.clearRect(0, 0, minCanvas.width, minCanvas.height);
+
+
+    minDrawFrameAttack(minCycleLoopAttack[minCurrentLoopIndexA], 0, 0, 0);
+
+    minCurrentLoopIndexA++;
+
+
+    //Keeps the loop going for the animation
+    if (minCurrentLoopIndexA >= minCycleLoopAttack.length) {
+        minCurrentLoopIndexA = 0;
+        minCtx.clearRect(0, 0, minCanvas.width, minCanvas.height);
+        window.cancelAnimationFrame(myMinAnimation)
+        myMinAnimation = window.requestAnimationFrame(stepMinIdle);
+        return;
+        
+
+    }
+
+
+
+    myMinAnimation = window.requestAnimationFrame(stepMinAttack);
+}
+
+//Animation function that is recursive for Dying
+function stepMinDying() {
+    //Keeps track of the frame count
+    minFrameCount++;
+    if (minFrameCount < 6) {
+        myMinAnimation = window.requestAnimationFrame(stepMinDying);
+        return;
+    }
+
+    minFrameCount = 0;
+    minCtx.clearRect(0, 0, minCanvas.width, minCanvas.height);
+
+    minDrawFrameDeath(minCycleLoopDeath[minCurrentLoopIndexD], 0, 0, 0);
+
+    minCurrentLoopIndexD++;
+
+    //Keeps the loop going for the animation
+
+    if (minCurrentLoopIndexD >= minCycleLoopDeath.length) {
+        minCurrentLoopIndexD = 0;
+
+    }
+
+
+    myMinAnimation = window.requestAnimationFrame(stepMinDying);
+}
+
+
+function minDrawFrameIdle(frameX, frameY, canvasX, canvasY) {
+    minCtx.drawImage(
+        minImg,
+        frameX * minWidth, (frameY * minHeight) + 960, minWidth, minHeight,
+        canvasX, canvasY, minScaledWidth, minScaledHeight
+    );
+}
+
+function minDrawFrameAttack(frameX, frameY, canvasX, canvasY) {
+    minCtx.drawImage(
+        minImg,
+        frameX * minWidth, (frameY * minHeight) + 1250, minWidth, minHeight,
+        canvasX, canvasY, minScaledWidth, minScaledHeight
+    );
+}
+function minDrawFrameDeath(frameX, frameY, canvasX, canvasY) {
+    minCtx.drawImage(
+        minImg,
+        frameX * minWidth, (frameY * minHeight) + 1825, minWidth, minHeight,
+        canvasX, canvasY, minScaledWidth, minScaledHeight
+    );
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+//LOGIC FOR BATTLEING
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+var adventurerOBJ = {
+    health: 15,
+    strength:2,
+    speed:100,
+    score: 0
+}
+var enemyOBJ;
+
+
+
+encounter();
+
+
+function encounter(){
+    
+    
+
+    var enemyChoice = Math.floor(Math.random()*10);
+    //Calls up the animation for the main character
+    init()
+    //Demon is the enemy
+    if(enemyChoice > 7){
+        enemyOBJ = {
+            name: "Demon",
+            health:17,
+            strength:4,
+            speed: 110
+        }
+
+        $("#minotaurAnimationID").css("display","none");
+        $("#adventurerAnimationID").css({
+            'right':'0px',
+            'left': '200px'
+           });
+           console.log("this is the demon init")
+           demonInit();
+    }
+    //Minotaur is the enemy
+    else{
+        enemyOBJ = {
+            name: "Minotaur",
+            health: 15,
+            strength: 2,
+            speed: 20,
+        }
+
+        $("#demonAnimationID").css("display","none");
+        $("#adventurerAnimationID").css({
+            'right':'0px',
+            'left': '300px'
+           });
+           minInit();
+    }
+}
+
+$("#attackCommand").on("click", function(){
+    //Sees who goes first, than deals damage
+    if(adventurerOBJ.speed > enemyOBJ.speed){
+        adAnimation = 0;
+        init();
+        
+
+        if(enemyOBJ.name =="Minotaur"){
+            minAnimation = 0;
+            setTimeout(minInit, 1000);
+            
+            
+
+        }
+        else{
+            demonAnimation = 0;
+            setTimeout(demonInit, 1000);
+            
+            
+
+        }
+
+    }
+    //If the enemy is faster
+    else{
+        if(enemyOBJ.name =="Minotaur"){
+            minAnimation = 0;
+            minInit();
+
+        }
+        else{
+            demonAnimation = 0;
+            demonInit();
+
+        }
+        adAnimation = 0;
+        setTimeout(init, 1000);
+        
+    
+    }
+    
+
+});
+$("#itemCommand").on("click", function(){
+    //Brings up list of items
+
+});
+$("#runCommand").on("click", function(){
+    //Runs a random chance to leave the battle but you lose your turn if you dont roll correctly
+
+});
+function damage(){
+
+}
+function ending(){
+
+}
