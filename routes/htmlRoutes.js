@@ -18,4 +18,8 @@ module.exports = function(app) {
     console.log('Map My CHAR', req.character);
     res.sendFile(path.join(__dirname, "../views/map.html"));
   });
+
+  app.get("*", function(req, res){
+    res.sendFile(path.join(__dirname, "../views/error.html"));
+  });
 };

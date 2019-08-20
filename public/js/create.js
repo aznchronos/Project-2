@@ -73,7 +73,7 @@ function requirementChecker(newUser) {
   ) {
     document.querySelector(".warning3").style.display = "block";
   } // 2 Missing:
-  // If everything is missing, but UserNamee
+  // If everything is missing, but UserName
   else if (
     newUser.name.length >= 5 &&
     newUser.name.length < 15 &&
