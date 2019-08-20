@@ -1,10 +1,29 @@
-
+@font-face {
+    font-family: 'breathe_fireregular';
+    src: url('/fonts/breathe_fire-webfont.woff2') format('woff2'),
+         url('/fonts/breathe_fire-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  
+  }
+  
+  
+  body{
+    background-image: url("../images/dark-honeycomb.png");
+    font-family: "breathe_fireregular";
+    font-weight: 700;
+  
+    
+  }
 
 .container{
     background-image: url(../images/map.png);
     background-repeat: no-repeat;
     height: 1000px;
     margin: auto;
+    margin-top: 50px;
+    
+
 }
 
 #controller{
@@ -12,6 +31,64 @@
     float: right;
     position: fixed;
     right: 0px;
+    font-size: 30px;
+}
+
+#textBox{
+    position: fixed;
+    right: 25px;
+    top: 350px;
+    color: white;
+    padding-top: 0px;
+    border: 10px double rgb(121, 121, 59);
+    width: 325px;
+    height : 200px;
+    background-color:black;
+    display:none;
+    
+    
+
+}
+#text{
+    margin-top: 0px;
+    margin-left: 10px;
+}
+
+#buttonDiv{
+    position: fixed;
+    right: 25px;
+    top: 570px;
+    font-size: 35px;
+    font-weight: 700;
+    
+}
+.actions{
+    width: 200px;
+    height: 75px;
+    display: none;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(83, 83, 83);
+    color: white;
+}
+.actions:hover{
+    background-color: grey;
+}
+#stats{
+    position: fixed;
+    left: 5px;
+    border: 10px solid black;
+    background-image: url(../images/background.png);
+    border-style: inset;
+    border-radius: 8px;
+    text-align: center;
+    width: 175px;
+    height: 300px;
+    top: 10px;
+    display: none;
 }
 .direct{
     margin: 10px;
@@ -28,20 +105,76 @@
     outline: none;
 
 }
+
 #map{
     position: relative;
-}
-#character{
-    height: 25px;
-    width: 25px;
-    background-color: red;
-    position: absolute;
-    top: 900px;
-    left: 70px;
    
+}
+
+
+#left:hover{
+    width: 105px;
+    height: 55px;
+}
+#right:hover{
+    width: 105px;
+    height: 55px;
+}
+#up:hover{
+    width: 105px;
+    height: 55px;
+}
+#down:hover{
+    width: 105px;
+    height: 55px;
+}
+#left{
+    visibility: hidden;
+}
+#right{
+    visibility: hidden;
+
+}
+#down{
+    visibility: hidden;
+}
+#statsHeader{
+    text-align: center;
+    text-decoration: underline;
+    font-weight: 700;
+    font-size: 40px;
+    margin-top: 20px;
+}
+.heartGif{
+    width: 40px;
+    height: 40px;
+}
+#hpDiv{
+    margin-top: 20px;
+}
+
+#characterAnimation{
+    position: absolute;
+    top: 800px;
+    left: 67px;
+    width: 37px;
+    height: 37px;
+    background-color: rgb(117, 17, 17);
+    border: 5px solid black;
+    border-radius: 20px;
+}
+
     
+.coinGif{
+    width: 100px;
+    height: 100px;
+}
+#scoreDiv{
+    font-weight: 800;
+}
 
+.container{
 
-
-
+  
+   
 }

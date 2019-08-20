@@ -7,9 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="/js/jquery.js"></script>
+
+
+
     <script src="/js/map.js"></script>
     <link rel="stylesheet" href="/styles/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="battle.css">
+
     <link rel="stylesheet" type="text/css" href="/styles/map.css">
+
+
 </head>
 
 <body>
@@ -18,16 +25,77 @@
         <div id=map>
 
             <div id="controller">
-                <button class="direct" id="up">Up</button>
+                <button class="arrow direct" id="up">Up</button>
                 <br>
                 <button class="direct" id="left">Left</button>
                 <button class="direct" id="right">Right</button>
                 <br>
                 <button class="direct" id="down">Down</button>
             </div>
-            <div id="character"></div>
+
+
+            <div id="textBox">
+                <h3 id="text">
+
+            </div>
+            <div id="characterAnimation"></div>
+            <div id="buttonDiv">
+                <button class="actions" id="start">Start Battle!</button>
+                <button class="actions" id="take">Take Item</button>
+                <button class="actions" id="open">Open chest</button>
+                <button class="actions" id="altarButton">Touch Altar</button>
+                <button class="actions" id="books">Grab Book</button>
+                <button class="actions" id="trapdoor">Open trapdoor</button>
+            </div>
+            <div id="stats">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 id="statsHeader">Character Stats</h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="hpDiv">
+                            <img class="heartGif" src="images/heartGif.gif">
+                            <h3>HP: </h3>
+                        </div>
+                        <div id="scoreDiv">
+                            <img class="coinGif" src="images/coingif.gif">
+                            <h3>Score: </h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
         </div>
     </div>
+    <div id="renderBattle">
+        <div id="battleScreen">
+            <canvas id="adventurerAnimationID" width="160" height="130"></canvas>
+            <canvas id="demonAnimationID" width="600" height="450"></canvas>
+            <canvas id="minotaurAnimationID" width="250" height="180"></canvas>
+        </div>
+    
+        <div id="commands">
+            <div id="playerHP"><p id="inner"></p></div>
+            <div id="textHP">Current HP: <span id="currentHP"> 15</span>/ 15</div>
+
+            <div id="enemyHP"><p id="innerEnemy"></p></div>
+            <div id="textEnemy">Current HP: <span id="currentEnemy"></span></div>
+
+            <div class="commands" id="attackCommand">ATTACK</div>
+            <div class="commands" id="itemsCommand">ITEMS</div>
+            <div class="commands" id="runCommand">RUN</div>
+        </div>
+    </div>
+
+
+    <script src="./sprites.js" async defer></script>
+
 </body>
 
 </html>
