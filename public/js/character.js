@@ -1,12 +1,11 @@
 function openDoor() {
-  $("#door").attr("src", "/images/dooropen.png");
+  $("#door").attr("src", "images/dooropen.png");
   type = 1; 
   cycleLoop = [1, 2, 3, 4, 5, 6];
   $("canvas").animate({ marginLeft: "850px" }, 2000, function() {
       $("body").fadeOut(3500, function() {
         window.location.href= "/map";
       });
-      
     });
 }
 $("#go").on("click", function() {
@@ -24,8 +23,10 @@ var type = 0;
 let img = new Image();
 img.src = '../images/AdSprite.png';
 
+
 img.onload = function () {
   init();
+
 }
 
 let canvas = document.getElementById("characterAnimation");
@@ -45,7 +46,9 @@ let cycleLoop = [0,1,2,3];
 let currentLoopIndex = 0;
 let frameCount = 0;
 
+
 function step() {
+
   frameCount++;
   if (frameCount < 6) {
     window.requestAnimationFrame(step);
@@ -60,6 +63,7 @@ function step() {
   }
   window.requestAnimationFrame(step);
 }
+
 
 function drawFrame(frameX, frameY, canvasX, canvasY) {
   ctx.drawImage(img,
