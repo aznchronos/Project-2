@@ -39,19 +39,20 @@ module.exports = function(app) {
                   .then(function(dbStats) {
                     var characterInfo = {
                       ID: data.id,
-                      characterName: dbCharName.dataValues.charname,
-                      HP: dbStats.dataValues.HP,
-                      Str: dbStats.dataValues.Str,
-                      Dex: dbStats.dataValues.Dex
+                      characterName: dbCharName.charname,
+                      HP: dbStats.HP,
+                      Str: dbStats.Str,
+                      Dex: dbStats.Dex
                     };
                     //this res.json sends back the user object back to the client side ajax call
                     // res.json(data.dataValues);
-                    res.json(characterInfo);
+                    return res.json(characterInfo);
                     // console.log(characterInfo);
                   });
               });
           } else {
-            console.log("invalid login credentials");
+            console.log("invalid login credentials from apiRoutes");
+            return res.status(401).json({msg: 'unable to find user'})
           }
         });
     }
@@ -60,8 +61,9 @@ module.exports = function(app) {
   app.post("/newUser", function(req) {
     var newUser = req.body.name;
     var newPass = req.body.pass;
+    var newChar = req.body.char;
 
-    if (newUser && newPass) {
+    if (newUser && newPass && newChar) {
       db.login
         .create({
           username: newUser,
@@ -70,6 +72,24 @@ module.exports = function(app) {
         .then(function(data) {
           console.log("data succesfully added to database");
           console.log(data);
+          db.game
+            .create({
+              charname: newChar
+            })
+            .then(function(result) {
+              console.log("New character has been added to database");
+              console.log(result);
+              db.charStats
+                .create({
+                  HP: 10,
+                  Str: 5,
+                  Dex: 1
+                })
+                .then(function(res) {
+                  console.log("Added stats for new character");
+                  console.log(res);
+                });
+            });
         });
     } else {
       console.log("error in adding to db");
