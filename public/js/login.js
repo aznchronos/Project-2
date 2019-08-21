@@ -28,6 +28,8 @@ $(document).ready(function() {
           $("#user").val("");
           $("#pass").val("");
           console.log(data);
+          window.localStorage.setItem("ID", data.id);
+          window.localStorage.setItem("Name", data.characterName);
           // console.log("This is the data.id for login.js " + data.ID);
           // console.log("This is the data.characterName for login.js " + data.characterName);
           window.location.href = "/character";

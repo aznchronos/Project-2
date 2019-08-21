@@ -52,7 +52,7 @@ module.exports = function(app) {
               });
           } else {
             console.log("invalid login credentials from apiRoutes");
-            return res.status(401).json({msg: 'unable to find user'})
+            return res.status(401).json({ msg: "unable to find user" });
           }
         });
     }
@@ -65,34 +65,54 @@ module.exports = function(app) {
 
     if (newUser && newPass && newChar) {
       db.login
-        .create({
-          username: newUser,
-          password: newPass
+        .findOne({
+          where: {
+            username: newUser
+          }
         })
         .then(function(data) {
-          console.log("data succesfully added to database");
-          console.log(data);
-          db.game
-            .create({
-              charname: newChar
-            })
-            .then(function(result) {
-              console.log("New character has been added to database");
-              console.log(result);
-              db.charStats
-                .create({
-                  HP: 10,
-                  Str: 5,
-                  Dex: 1
-                })
-                .then(function(res) {
-                  console.log("Added stats for new character");
-                  console.log(res);
-                });
-            });
+          if (data !== null) {
+            console.log("There's already an existing login");
+            return;
+          } else {
+            var user = { newUser, newPass, newChar }
+            newAccount(user);
+          }
         });
-    } else {
-      console.log("error in adding to db");
     }
   });
 };
+
+function newAccount(user) {
+  if (user !== null) {
+    db.login
+      .create({
+        username: user.newUser,
+        password: user.newPass
+      })
+      .then(function(data) {
+        console.log("data succesfully added to database");
+        console.log(data);
+        db.game
+          .create({
+            charname: user.newChar
+          })
+          .then(function(result) {
+            console.log("New character has been added to database");
+            console.log(result);
+            db.charStats
+              .create({
+                HP: 10,
+                Str: 5,
+                Dex: 1
+              })
+              .then(function(res) {
+                console.log("Added stats for new character");
+                console.log(res);
+              });
+          });
+      });
+  } else {
+    console.log("error in adding to db");
+  }
+}
