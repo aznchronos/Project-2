@@ -45,6 +45,7 @@
 
 }
 #itemsCommand{
+    display: none;
     position: absolute;
     height:100px;
     width:250px;
@@ -54,6 +55,7 @@
 
 }
 #runCommand{
+    display: none;
     background-repeat: no-repeat;
     background-image: url("/images/runaway.png");
     position: absolute;
