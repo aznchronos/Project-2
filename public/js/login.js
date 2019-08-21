@@ -19,6 +19,7 @@ $(document).ready(function() {
       data: user,
       error: function(xhr, ajaxOptions, thrownError) {
         console.log('There was an error', xhr.responseText);
+        warning();
       },
       success: function(data) {
         console.log("This is the data from login.js " + data);
@@ -31,8 +32,6 @@ $(document).ready(function() {
           // console.log("This is the data.characterName for login.js " + data.characterName);
           window.location.href = "/character";
           return;
-        } else {
-          warning();
         }
         console.log("there was an error")
         return;
