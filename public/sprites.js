@@ -567,8 +567,6 @@ let gLoopIndexD = 0;
 
 
 function gInit() {
-    console.log(" we in here");
-
     gFrameCount = 6;
     window.cancelAnimationFrame(myGAnimation);
     gCtx.clearRect(0, 0, ghostCanvas.width, ghostCanvas.height);
@@ -617,7 +615,6 @@ function stepGSpawn() {
     myGAnimation = window.requestAnimationFrame(stepGSpawn);
 }
 function stepGIdle() {
-    console.log("here")
     //Keeps track of the frame count
     gFrameCount++;
     if (gFrameCount < 6) {
@@ -741,19 +738,42 @@ function drawGFrameDeath(frameX, frameY, canvasX, canvasY) {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 //LOGIC FOR BATTLEING
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
+//typewriter effect for battling
+let textChar = 0;
+function type(text) {
+    if (textChar < text.length) {
+      $("#battleText").append(text.charAt(textChar));
+      textChar ++;
+      setTimeout(function() {
+        type(text);
+      }, 10);
+    }
+ 
+  }
 
+function emptyBattleText() {
+    $("#battleText").empty();
+}
+
+  //conditionals to check if stat boosts have been taken
 opened = false
 altarTaken = false;
 bookRead = false;
 statueUsed = false;
+$("body").on("click", ".commands", function() {
+    $(".commands").css("display", "none");
+    setTimeout(function() {
+        $(".commands").fadeIn();
+    }, 1500)
 
+});
 $("#open").on("click", function() {
     if (!opened) {
         adventurerOBJ.score += 100;
         opened = true;
     }
 
-})
+});
 
 $("#altarButton").on("click", function() {
     if (!altarTaken) {
@@ -794,7 +814,7 @@ function lose() {
     $("#winLose").html("lost!")
     $(".return").css("display", "none");
     $("#endBattle").append("<button id='title' class=return>Return to Title</button>");
-    $("#endBattle").append("<h1>Total Score: " + adventurerOBJ.score + "</h1>");
+    $("#score").html("Total Score: " + adventurerOBJ.score);
 
 }
 
@@ -805,7 +825,7 @@ function win() {
     $("#winLose").html("beat the game!");
     $(".return").css("display", "none");
     $("#endBattle").append("<button id='title' class=return>Return to Title</button>");
-    $("#endBattle").append("<h1>Total Score: " + adventurerOBJ.score + "</h1>");
+    $("#score").html("Total Score: " + adventurerOBJ.score);
 }
 function isAlive(obj) {
     if (obj.health  > 0) {
@@ -831,7 +851,6 @@ function isAlive(obj) {
        }
     } else if ((obj == adventurerOBJ) && (obj.health  < 0)) {
         setTimeout(lose, 1200);
-        console.log("YOU DIED");
         setTimeout(function(){
              adAnimation = 1;
             init();
@@ -845,19 +864,27 @@ function isAlive(obj) {
 
 
 function takeDamage() {
+    emptyBattleText();
+    textChar = 0;
+    
     var missChance = Math.floor((Math.random() * 2) + 1);
     if (enemyOBJ.name === "Demon" && bookRead) {
         missChance = Math.floor((Math.random() * 10) + 1);
-       
-
-    }
-    
+    }  
     if (adventurerOBJ.health > 0 && missChance == 2) {
-        if (enemyOBJ.name === "Demon"){
+        if (enemyOBJ.name === "Demon"){         
             currentCharPercent -= 50;
+            setTimeout(function() {
+                type("The " + enemyOBJ.name + " hit you for " + enemyOBJ.strength + " damage!");
 
-        } else {
+            }, 250);
+            
+        } else {   
             currentCharPercent -=14;
+            setTimeout(function() {
+                type("The " + enemyOBJ.name + " hit you for " + enemyOBJ.strength + " damage!");
+
+            }, 250);
         } 
  
         adventurerOBJ.health -= enemyOBJ.strength;
@@ -867,8 +894,11 @@ function takeDamage() {
 
         updateCharHP();
 
+    } else if (missChance == 2) {
+        type("The " + enemyOBJ.name + " missed you!")
+
     } else if (missChance !== 5) {
-        console.log("You Missed!");
+        type("The " + enemyOBJ.name + " missed you!")
 
     } else if (adventurerOBJ.health < 0) {
        
@@ -883,18 +913,25 @@ function takeDamage() {
 
 
 function dealDamage() {
+    
     var missChance = Math.floor((Math.random() * 5) + 1);
     if (enemyOBJ.health > 0) {
         if (!altarTaken){
+         
             currentEnemyPercent -= 14;
+            type("You deal " + adventurerOBJ.strength + " damage to the " + enemyOBJ.name);    
 
         } else if (altarTaken) {
-            currentEnemyPercent -= 20;
+            
+            currentEnemyPercent -= 20;  
+            type("You deal " + adventurerOBJ.strength + " damage to the " + enemyOBJ.name);    
         }
        
         enemyOBJ.health -= adventurerOBJ.strength;
         $("#innerEnemy").animate({ width: currentEnemyPercent + "%" });
         updateEnemyHP();
+       
+        console.log("this is textchar " + textChar)
 
     }
 
@@ -933,6 +970,8 @@ $("#boss").on("click", function(){
 
 //loads when you're in the boss room
 function bossEncounter() {
+    emptyBattleText();
+    $("#innerEnemy").animate({ width: "100%" });
     
    
     $("#minotaurAnimationID").css("display", "none");
@@ -956,6 +995,7 @@ function bossEncounter() {
 }
 //function for rendering sprites for regular battles
 function encounter() {
+    emptyBattleText();
 
    
     var enemyChoice = Math.floor(Math.random() * 10);
@@ -1008,8 +1048,11 @@ function encounter() {
 }
 //
 $("#attackCommand").on("click", function () {
+    emptyBattleText();
+    textChar = 0;
     //Sees who goes first, than deals damage
     if (adventurerOBJ.speed > enemyOBJ.speed) {
+ 
         adAnimation = 0;
         init();
         dealDamage();
@@ -1017,9 +1060,11 @@ $("#attackCommand").on("click", function () {
 
 
         if (enemyOBJ.name == "Minotaur") {
+          
+   
             minAnimation = 0;
-            setTimeout(minInit, 1000);
-            setTimeout(takeDamage, 1000);
+            setTimeout(minInit, 1500);
+            setTimeout(takeDamage, 1500);
             setTimeout(isAlive(adventurerOBJ), 1000);
         
 
@@ -1027,16 +1072,19 @@ $("#attackCommand").on("click", function () {
 
 
          } else if (enemyOBJ.name == "Ghost") {
+            
+     
             gAnimation = 1;
-            setTimeout(gInit, 1000);
-            setTimeout(takeDamage, 1000);
+            setTimeout(gInit, 1500);
+            setTimeout(takeDamage, 1500);
             setTimeout(isAlive(adventurerOBJ));
       
 
         } else {
+      
             demonAnimation = 0;
-            setTimeout(demonInit, 1000);
-            setTimeout(takeDamage, 1000);
+            setTimeout(demonInit, 1500);
+            setTimeout(takeDamage, 1500);
             setTimeout(isAlive(adventurerOBJ));
 
         }

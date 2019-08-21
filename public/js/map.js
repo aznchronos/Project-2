@@ -20,6 +20,10 @@ $(document).ready(function() {
   let textSurprise = "You plunge into the chest grabbing all you can see but don't see something creeping behind you...";
   let textTrapDoor = "You see a wooden board on the floor you think you might be able to move it!";
 
+
+  //text for after you've taken items
+  
+
   let textBoss = "This room has a feeling of finality...";
 
   let i = 0;
@@ -29,14 +33,23 @@ $(document).ready(function() {
   let secondBattle = false;
   let thirdBattle = false;
   let bossBattle =false;
-
+  $("body").on("click", "#title", function() {
+    window.location.href = "/"
+  });
+  $("body").on("click", ".actions", function() {
+    $(".direct").fadeIn();
+  });
   //when the battle is over return to map
   $("body").on("click", ".return", function() {
     $("#endBattle").fadeOut(1000);
-  })
+    $(".direct").fadeIn()
+  });
+
+  $("body").on("click",".direct", function() {
+    $(".direct").css("display", "none");
+  });
   //function that creates the typewriter effect and fades in a respective button
   function type(text, button) {
-    console.log("typewriter loading")
     $("#textBox").fadeIn();
     $("#" + button).fadeIn();
     
@@ -45,7 +58,7 @@ $(document).ready(function() {
       i ++;
       setTimeout(function() {
         type(text);
-      }, 20);
+      }, 10);
     }
   }
   //clears out textbox
@@ -94,12 +107,14 @@ $(document).ready(function() {
   function alterY(amount, speed, positionAfter) {
     $(character).animate({ top: amount }, speed, function() {
       position = positionAfter;
+      $(".direct").fadeIn();
     });
   }
 
   function alterX(amount, speed, positionAfter) {
     $(character).animate({ left: amount }, speed, function() {
       position = positionAfter;
+      $(".direct").fadeIn();
     });
   }
  
@@ -150,6 +165,7 @@ $(document).ready(function() {
         alterButton("up", "hidden", "up");
       }
       if (position === 11) {
+        empty()
         alterButton("right", "visible", "right");
         alterButton("left", "visible", "left");
         alterButton("down", "visible", "down");
@@ -216,6 +232,7 @@ $(document).ready(function() {
       }
 
       if (position === 11) {
+        empty();
         type(textChest, "open");
       }
       if (position === 13) {
@@ -319,7 +336,9 @@ $(document).ready(function() {
         alterButton("right", "visible", "right");
       }
       if (position === 11) {
+        empty();
         type(textNothing);
+        $(".direct").fadeIn();
       }
       if (position === 12) {
         alterButton("up", "visible", "Inspect");
@@ -331,26 +350,58 @@ $(document).ready(function() {
       }
     });
   }
+
+  let chestDone = false;
+  let altarDone = false;
+  let booksDone = false;
+  let statueDone = false;
   $("#open").on("click", function() {
-    empty();
-    type(textSurprise, "start");
+    if (!chestDone){
+      empty();
+      type(textSurprise, "start");
+      chestDone = true;
+
+    } else {
+      empty();
+      type("It's already been looted...");
+    }
+ 
 
   });
   $()
   $("#altarButton").on("click", function() {
-    empty();
-    type(touchAltar);
+    if (!altarDone) {
+      empty();
+      type(touchAltar);
+      altarDone = true;
+    } else {
+      empty();
+      type("Nothing Happens...");
+    }
     
 
   })
   $("#books").on("click", function() {
-    empty();
-    type(touchBookcase);
-    empty();
+    if (!booksDone) {
+      empty();
+      type(touchBookcase);
+      booksDone = true;
+    } else {
+      empty();
+      type("You've read all you can from the book...");
+    }
+
+
   })
   $("#statue").on("click", function() {
-    empty();
-    type(touchStatue);
+    if (!statueDone) {
+      empty();
+      type(touchStatue);
+    } else {
+      empty();
+      type("Nothing Happens...");
+    }
+
   })
   ///loads the directional inputs
   loadUp();
