@@ -45,6 +45,7 @@
 
 }
 #itemsCommand{
+    display: none;
     position: absolute;
     height:100px;
     width:250px;
@@ -54,6 +55,7 @@
 
 }
 #runCommand{
+    display: none;
     background-repeat: no-repeat;
     background-image: url("/images/runaway.png");
     position: absolute;
@@ -150,4 +152,18 @@
     bottom: 190px;
     right: 80px;
 
+}
+#battleText {
+    width: 500px;
+    height: 150px;
+    border: 5px solid black;
+    position: absolute;
+    top: 150px;
+    bottom: 0px;
+    right: 375px;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    font-size: 25px;
+    letter-spacing: 2px;
 }
