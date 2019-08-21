@@ -178,3 +178,26 @@
   
    
 }
+#endBattle{
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border: 5px double black;
+    top: 20%;
+    left: 30%;
+    background-color: grey;
+    opacity: 0.9;
+    text-align: center;
+    display: none;
+
+}
+.return{
+    margin-top: 100px;
+    background-color: rgb(83, 74, 74);
+    width: 200px;
+    height: 60px;
+    font-size: 26px;
+}
+#return:hover{
+    background-color: rgb(175, 175, 175);
+}

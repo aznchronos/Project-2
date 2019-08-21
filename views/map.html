@@ -5,17 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Map</title>
+    <title>Document</title>
     <script src="/js/jquery.js"></script>
+
+
+
     <script src="/js/map.js"></script>
     <link rel="stylesheet" href="/styles/bootstrap/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/battle.css">
+
     <link rel="stylesheet" type="text/css" href="/styles/map.css">
+
+
 </head>
 
 <body>
     <div class="container">
+
+        <div id="endBattle">
+            <h1>
+                You <span id="winLose">won!</span>
+            </h1>
+            <button class="return">Return to Game</button>
+            
+        </div>
+
         <div id=map>
+
             <div id="controller">
                 <button class="arrow direct" id="up">Up</button>
                 <br>
@@ -25,12 +41,12 @@
                 <button class="direct" id="down">Down</button>
             </div>
 
+
             <div id="textBox">
                 <h3 id="text">
+
             </div>
-
             <div id="characterAnimation"></div>
-
             <div id="buttonDiv">
                 <button class="actions" id="start">Start Battle!</button>
                 <button class="actions" id="take">Take Item</button>
@@ -38,8 +54,9 @@
                 <button class="actions" id="altarButton">Touch Altar</button>
                 <button class="actions" id="books">Grab Book</button>
                 <button class="actions" id="trapdoor">Open trapdoor</button>
+                <button class="actions" id="boss">Begin</button>
+                <button class="actions" id="statue">Pray</button>
             </div>
-
             <div id="stats">
                 <div class="row">
                     <div class="col-md-12">
@@ -59,14 +76,20 @@
                         </div>
                     </div>
                 </div>
+
             </div>
+
+
+
         </div>
+
     </div>
     <div id="renderBattle">
         <div id="battleScreen">
             <canvas id="adventurerAnimationID" width="160" height="130"></canvas>
             <canvas id="demonAnimationID" width="600" height="450"></canvas>
             <canvas id="minotaurAnimationID" width="250" height="180"></canvas>
+            <canvas id="ghostAnimationID" width= "150" height="200"></canvas>
         </div>
     
         <div id="commands">
@@ -81,7 +104,10 @@
             <div class="commands" id="runCommand">RUN</div>
         </div>
     </div>
+
+
     <script src="./sprites.js" async defer></script>
+
 </body>
 
 </html>
