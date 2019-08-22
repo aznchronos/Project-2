@@ -1,4 +1,11 @@
 $(document).ready(function() {
+  //AUDIO ADDED IN
+  /////////////////////
+  var titleMusic = new Audio("./js/titleScreen.mp3");
+titleMusic.loop = true;
+  document.onkeyup = function(){
+    titleMusic.play();
+  }
 
   $("#submit").on("click", function() {
     //creates the body object "user" and sends post request
@@ -33,6 +40,7 @@ $(document).ready(function() {
           // console.log("This is the data.id for login.js " + data.ID);
           // console.log("This is the data.characterName for login.js " + data.characterName);
           window.location.href = "/character";
+
           return;
         }
         console.log("there was an error")
