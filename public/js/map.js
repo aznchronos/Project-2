@@ -1,7 +1,20 @@
 
-
-
+  var backGroundMusic = new Audio("./js/background.mp3");
+  backGroundMusic.loop = true;
 $(document).ready(function() {
+
+  
+    document.onkeyup = function(){
+      backGroundMusic.play();
+    }
+
+  backGroundMusic.loop = true; 
+  function playBackground(){
+    backGroundMusic.pause();
+    backGroundMusic.play();
+
+  }
+  playBackground()
 
 
   //grabs character div
