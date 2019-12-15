@@ -29,7 +29,7 @@ The homescreen is a nice, simple, and dark that we felt set the theme of the gam
 - [MySQL](https://www.mysql.com)
 - [Node](http://nodejs.org)
 - [JQuery](https://jquery.com)
-- [Bootstrap](https://getbootstrap.com/
+- [Bootstrap](https://getbootstrap.com)
 - [Javascript]
 - [HTML]
 - [CSS]
